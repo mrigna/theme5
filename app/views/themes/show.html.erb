@@ -1,0 +1,21 @@
+<h1>Themes </h1>
+<% @theme = Theme.find(params[:id]) %>
+<p>
+  <strong>Title:</strong>
+  <%#= @metadata.title %>
+</p>
+
+<div>
+  <strong>Content:</strong>
+  <br />
+  <hr />
+  <%= if @theme.html_content.nil? == false 
+      render html: @theme.html_content.html_safe 
+  end %>
+  </div>
+</div>
+</p>
+
+
+<%= link_to 'Back', root_path %>
+<%#= link_to 'Update', theme, id: "edit_link", data: {save_url: mercury_update(@theme)} %>

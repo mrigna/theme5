@@ -1,0 +1,14 @@
+<h1>Editing Theme</h1>
+
+  <div id="header">
+    <%#= @metadata.title %>
+  </div>
+  <div id= "theme_content" data-mercury="full">
+    <%= raw @theme.html_content %>
+  </div>
+  
+<div><%= link_to 'Back',  root_path %></div>
+
+<td><%= link_to 'Update', "/editor"  + update_path(@theme), id: "edit_link", data: {save_url: mercury_update_theme_path(@theme)} %></td>
+
+ 

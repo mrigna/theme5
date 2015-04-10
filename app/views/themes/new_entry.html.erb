@@ -1,0 +1,29 @@
+<h1>New Theme</h1>
+<%#= params[:id] %>
+<div>Titre</div><br>
+<div id="theme_title" data-mercury="simple">
+
+ <%#= @metadata.title %>
+</div>
+<div>Description</div><br>
+<div id="theme_description" data-mercury="simple">
+  <%#= @metadata.description %>
+</div>
+<div>Mots-clés</div><br>
+<div id="theme_keywords" data-mercury="simple">
+  <%#= @metadata.keywords %>
+</div>
+<div>Contenu</div><br>
+<div id="theme_content" data-mercury="full">
+<%= raw @theme.html_content %>
+</div>
+
+<script>
+jQuery(parent).trigger('initialize:frame');
+</script>
+
+<%= link_to 'Back', root_path %>
+
+
+
+
