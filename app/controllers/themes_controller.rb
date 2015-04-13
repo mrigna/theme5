@@ -5,7 +5,7 @@ class ThemesController < ApplicationController
   def index
     @@count = Theme.last.id
     @id = @@count
-    @themes = Theme.all.order(id: :asc)
+    @themes = Theme.all.order(id: :asc)          
   end
     
   def show
@@ -13,16 +13,22 @@ class ThemesController < ApplicationController
   
   def generate
      @theme = Theme.new
+     @meta = Metadata.create
      @theme.id = @@count
+     @theme.contentID  = "new_"+ DateTime.now.to_s(:number)
+     @meta.contentID = @theme.contentID
      @theme.save!
+     @meta.save!
   end
   
   def create
-    #@metadata.title = params[:content][:theme_title][:value].delete!("\n")
-    #@metadata.description = params[:content][:theme_description][:value].delete!("\n")
-    #@metadata.keywords = params[:content][:theme_keywords][:value].delete!("\n")
+    @meta.language = params[:content][:meta_language][:value].delete!("\n")
+    @meta.title = params[:content][:meta_title][:value].delete!("\n")
+    @meta.description = params[:content][:meta_description][:value].delete!("\n")
+    @meta.keywords = params[:content][:meta_keywords][:value].delete!("\n")
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
     @theme.save!
+    @meta.save!
     render text: ""
   end  
   
@@ -55,14 +61,16 @@ class ThemesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_theme
     @theme = Theme.find(params[:id])
+    @meta = Metadata.find_by(:contentID => @theme.contentID)
+    @node = Node.find_by(:nodeID => @theme.nodeID)
     end
+    
     def theme_params
     params.require(:theme).permit(:html_content)
+    params.require(:metadata).permit(:language, :title, :description, :keywords)
+    params.require(:node).permit(:dg)
     end
-  
-    def counter
-  
-    end 
+
 end
 
 

@@ -1,8 +1,9 @@
 <h1>Themes </h1>
 <% @theme = Theme.find(params[:id]) %>
+<% @meta = Metadata.find_by(:contentID => @theme.contentID) %>
 <p>
   <strong>Title:</strong>
-  <%#= @metadata.title %>
+  <%= @meta.title %>
 </p>
 
 <div>

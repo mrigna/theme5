@@ -1,5 +1,5 @@
 namespace :db do
-  desc "Create 100 themes html code"
+  desc "Create 20 themes html code"
   task :theme_populate => :environment do
     require 'populator'
     require 'faker'

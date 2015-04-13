@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317075827) do
+ActiveRecord::Schema.define(version: 20150413070505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,5 +50,6 @@ ActiveRecord::Schema.define(version: 20150317075827) do
 
   add_index "themes", ["contentID"], name: "index_themes_on_contentID", unique: true, using: :btree
 
+  add_foreign_key "metadata", "themes", column: "contentID", primary_key: "contentID", on_delete: :cascade
   add_foreign_key "themes", "nodes", column: "nodeID", primary_key: "nodeID", on_delete: :nullify
 end

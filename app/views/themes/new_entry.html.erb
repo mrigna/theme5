@@ -1,18 +1,26 @@
 <h1>New Theme</h1>
-<%#= params[:id] %>
-<div>Titre</div><br>
-<div id="theme_title" data-mercury="simple">
 
- <%#= @metadata.title %>
+<div>Titre</div><br>
+<div id="meta_title" data-mercury="simple">
+ <%= @meta.title  %>
 </div>
 <div>Description</div><br>
-<div id="theme_description" data-mercury="simple">
-  <%#= @metadata.description %>
+<div id="meta_description" data-mercury="simple">
+  <%= @meta.description %>
 </div>
 <div>Mots-clés</div><br>
-<div id="theme_keywords" data-mercury="simple">
-  <%#= @metadata.keywords %>
+<div id="meta_keywords" data-mercury="simple">
+  <%= @meta.keywords %>
 </div>
+<div>Langue</div><br>
+<div id="meta_language" data-mercury="simple">
+  <%= @meta.language %>
+</div>
+<div>DG</div><br>
+<div id="node_d" data-mercury="simple">
+  <%= @node.dg %>
+</div>
+
 <div>Contenu</div><br>
 <div id="theme_content" data-mercury="full">
 <%= raw @theme.html_content %>
