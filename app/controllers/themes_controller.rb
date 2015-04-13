@@ -5,7 +5,7 @@ class ThemesController < ApplicationController
   def index
     @@count = Theme.last.id
     @id = @@count
-    @themes = Theme.all.order(id: :asc)          
+    @themes = Theme.all.order(id: :asc)
   end
     
   def show
@@ -26,6 +26,7 @@ class ThemesController < ApplicationController
     @meta.title = params[:content][:meta_title][:value].delete!("\n")
     @meta.description = params[:content][:meta_description][:value].delete!("\n")
     @meta.keywords = params[:content][:meta_keywords][:value].delete!("\n")
+    #@meta.nodeID = params[:content][:meta_nodeID][:value]
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
     @theme.save!
     @meta.save!

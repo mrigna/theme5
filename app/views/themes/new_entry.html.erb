@@ -13,12 +13,17 @@
   <%= @meta.keywords %>
 </div>
 <div>Langue</div><br>
-<div id="meta_language" data-mercury="simple">
-  <%= @meta.language %>
+<%= form_for @meta do |f| %>
+<%= f.select_tag :language, options_for_select(%w{fr nl}) %>
+<% end %>
 </div>
-<div>DG</div><br>
-<div id="node_d" data-mercury="simple">
-  <%= @node.dg %>
+
+<div>Node</div><br>
+<div id="node_id">
+  <%#= form_for Node.new do |f| %>
+  <%#= f.collection_select :nodeID, Node.all, :id, :url_label %>
+  <%# end %>
+</div>
 </div>
 
 <div>Contenu</div><br>

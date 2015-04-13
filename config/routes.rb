@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
    root 'themes#index'
   
+  resources :metadata
+  
   resources :themes, :only => [:destroy, :show, :update] do
     member {post :mercury_update}
   end
-  
-  
+   
   mount Mercury::Engine => '/'
   get  'themes/:id/new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'
   get  'themes/:id/create' => 'themes#new_entry'
