@@ -1,6 +1,6 @@
 class Node < ActiveRecord::Base
   has_many :themes
-  
+   
   default_scope { order('"nodeID" ASC')}
   
   def settings

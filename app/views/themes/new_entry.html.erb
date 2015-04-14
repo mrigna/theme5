@@ -1,28 +1,28 @@
 <h1>New Theme</h1>
 
-<div>Titre</div><br>
-<div id="meta_title" data-mercury="simple">
- <%= @meta.title  %>
-</div>
-<div>Description</div><br>
-<div id="meta_description" data-mercury="simple">
-  <%= @meta.description %>
-</div>
-<div>Mots-clés</div><br>
-<div id="meta_keywords" data-mercury="simple">
-  <%= @meta.keywords %>
-</div>
-<div>Langue</div><br>
-<%= form_for @meta do |f| %>
-<%= f.select_tag :language, options_for_select(%w{fr nl}) %>
-<% end %>
-</div>
+    <div>Titre</div><br>
+    <div id="meta_title" data-mercury="simple">
+     <%= @meta.title  %>
+    </div>
+    <div>Description</div><br>
+    <div id="meta_description" data-mercury="simple">
+      <%= @meta.description %>
+    </div>
+    <div>Mots-clés</div><br>
+    <div id="meta_keywords" data-mercury="simple">
+      <%= @meta.keywords %>
+    </div>
+    <div>Langue</div><br>
+    <div id="meta_language" data-mercury="simple">
+        <%= @meta.language %>
+    </div>
+    </div>
 
-<div>Node</div><br>
-<div id="node_id">
-  <%#= form_for Node.new do |f| %>
-  <%#= f.collection_select :nodeID, Node.all, :id, :url_label %>
-  <%# end %>
+    <div>Node</div><br>
+    <div id="node_id">
+    <%= form_for Node.new do |f| %>
+      <%= f.collection_select :nodeID, Node.all, :id, :url_label %>
+    <% end %>
 </div>
 </div>
 

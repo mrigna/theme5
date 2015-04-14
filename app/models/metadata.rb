@@ -1,3 +1,3 @@
 class Metadata < ActiveRecord::Base
-  belongs_to :themes
+  belongs_to :theme
 end

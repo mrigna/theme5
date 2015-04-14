@@ -22,15 +22,18 @@ class ThemesController < ApplicationController
   end
   
   def create
+    # fix multiple choice view for language    
     @meta.language = params[:content][:meta_language][:value].delete!("\n")
     @meta.title = params[:content][:meta_title][:value].delete!("\n")
     @meta.description = params[:content][:meta_description][:value].delete!("\n")
     @meta.keywords = params[:content][:meta_keywords][:value].delete!("\n")
-    #@meta.nodeID = params[:content][:meta_nodeID][:value]
+    # fix node choice for existing nodeID in Node model 
+    # @meta.nodeID = params[:content][:meta_nodeID][:value]
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
-    @theme.save!
-    @meta.save!
-    render text: ""
+  
+   @theme.save!
+   @meta.save!
+   render text: ""
   end  
   
   def count
@@ -68,7 +71,7 @@ class ThemesController < ApplicationController
     
     def theme_params
     params.require(:theme).permit(:html_content)
-    params.require(:metadata).permit(:language, :title, :description, :keywords)
+    params.require(:meta).permit(:language, :title, :description, :keywords)
     params.require(:node).permit(:dg)
     end
 
