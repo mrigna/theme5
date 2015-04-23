@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413070505) do
+ActiveRecord::Schema.define(version: 20150422065638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "metadata", force: :cascade do |t|
+    t.integer  "themes_id"
     t.string   "contentID"
     t.string   "language"
     t.string   "title"
@@ -26,6 +27,9 @@ ActiveRecord::Schema.define(version: 20150413070505) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "metadata", ["id"], name: "index_metadata_on_id", unique: true, using: :btree
+  add_index "metadata", ["themes_id"], name: "index_metadata_on_themes_id", using: :btree
 
   create_table "nodes", force: :cascade do |t|
     t.integer  "nodeID"
@@ -41,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150413070505) do
   add_index "nodes", ["nodeID"], name: "index_nodes_on_nodeID", unique: true, using: :btree
 
   create_table "themes", force: :cascade do |t|
+    t.integer  "nodes_id"
     t.integer  "nodeID"
     t.string   "contentID"
     t.text     "html_content"
@@ -49,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150413070505) do
   end
 
   add_index "themes", ["contentID"], name: "index_themes_on_contentID", unique: true, using: :btree
+  add_index "themes", ["nodes_id"], name: "index_themes_on_nodes_id", using: :btree
 
   add_foreign_key "metadata", "themes", column: "contentID", primary_key: "contentID", on_delete: :cascade
   add_foreign_key "themes", "nodes", column: "nodeID", primary_key: "nodeID", on_delete: :nullify
