@@ -1,41 +1,44 @@
 <h1>New Theme</h1>
-
     <div>Titre</div><br>
-    <div id="meta_title" data-mercury="simple">
+    <div id="metadata_title" data-mercury="simple">
       <%= @theme.metadata.title  %>
     </div>
     <div>Description</div><br>
-    <div id="meta_description" data-mercury="simple">
+    <div id="metadata_description" data-mercury="simple">
       <%= @theme.metadata.description %>
     </div>
     <div>Mots-clés</div><br>
-    <div id="meta_keywords" data-mercury="simple">
+    <div id="metadata_keywords" data-mercury="simple">
       <%= @theme.metadata.keywords %>
     </div>
     <div>Langue</div><br>
-    <div id="meta_language" data-mercury="simple">
+    <div id="metadata_language" data-mercury="simple">
         <%= @theme.metadata.language %>
     </div>
     </div>
 
-    <div>Node</div><br>
+
+<div>Contenu</div><br>
+  <div id="theme_content" data-mercury="full">
+    <%= raw @theme.html_content %>
+  </div>
+
+ <div>Node</div><br>
     <div id="node_id">
     <%= form_for Node.new do |f| %>
       <%= f.collection_select :nodeID, Node.all, :id, :url_label %>
     <% end %>
-</div>
-</div>
-
-<div>Contenu</div><br>
-<div id="theme_content" data-mercury="full">
-<%= raw @theme.html_content %>
-</div>
+    </div>
+ </div>
 
 <script>
 jQuery(parent).trigger('initialize:frame');
 </script>
 
+<br>
+<hr /><br>
 <%= link_to 'Back', root_path %>
+
 
 
 

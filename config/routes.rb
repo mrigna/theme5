@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
    root 'themes#index'
   
-  resources :metadata
+  resources :metadata, :only => [:update]
   
   resources :themes, :only => [:destroy, :show, :update] do
     member {post :mercury_update}

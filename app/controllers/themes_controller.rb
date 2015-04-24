@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
+  before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :new_meta]
   after_action :count, only: :create
         
   def index
@@ -12,7 +12,7 @@ class ThemesController < ApplicationController
   end
   
   def generate
-     @theme = Theme.new(params[:theme])
+     @theme = Theme.new
      @theme.id = @@count
      @theme.contentID  = "new_"+ DateTime.now.to_s(:number)
      @theme.save!
@@ -20,12 +20,12 @@ class ThemesController < ApplicationController
   
   def create
     # fix multiple choice view for language    
-    @meta.language = params[:content][:meta_language][:value].delete!("\n")
-    @meta.title = params[:content][:meta_title][:value].delete!("\n")
-    @meta.description = params[:content][:meta_description][:value].delete!("\n")
-    @meta.keywords = params[:content][:meta_keywords][:value].delete!("\n")
+    @theme.metadata.language = params[:content][:metadata_language][:value].delete!("\n")
+    @theme.metadata.title = params[:content][:metadata_title][:value].delete!("\n")
+    @theme.metadata.description = params[:content][:metadata_description][:value].delete!("\n")
+    @theme.metadata.keywords = params[:content][:metadata_keywords][:value].delete!("\n")
     # fix node choice for existing nodeID in Node model 
-    # @meta.nodeID = params[:content][:meta_nodeID][:value]
+    #@theme.node_id = params[:content][:node_id][:value]
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
     @theme.save!
    
@@ -57,12 +57,14 @@ class ThemesController < ApplicationController
     end
   end
   
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_theme
     @theme = Theme.find(params[:id])
+    @theme.metadata ||= Metadata.new
     end
-    
+      
     def theme_params
       params.require(:theme).permit(:html_content, :node_attributes, :metadata_attributes)
     end
