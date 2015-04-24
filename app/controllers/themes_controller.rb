@@ -12,13 +12,10 @@ class ThemesController < ApplicationController
   end
   
   def generate
-     @theme = Theme.new
-     @meta = Metadata.create
+     @theme = Theme.new(params[:theme])
      @theme.id = @@count
      @theme.contentID  = "new_"+ DateTime.now.to_s(:number)
-     @meta.contentID = @theme.contentID
      @theme.save!
-     @meta.save!
   end
   
   def create
@@ -30,9 +27,8 @@ class ThemesController < ApplicationController
     # fix node choice for existing nodeID in Node model 
     # @meta.nodeID = params[:content][:meta_nodeID][:value]
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
-  
-   @theme.save!
-   @meta.save!
+    @theme.save!
+   
    render text: ""
   end  
   
@@ -65,14 +61,10 @@ class ThemesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_theme
     @theme = Theme.find(params[:id])
-    @meta = Metadata.find_by(:contentID => @theme.contentID)
-    @node = Node.find_by(:nodeID => @theme.nodeID)
     end
     
     def theme_params
-    params.require(:theme).permit(:html_content)
-    params.require(:meta).permit(:language, :title, :description, :keywords)
-    params.require(:node).permit(:dg)
+      params.require(:theme).permit(:html_content, :node_attributes, :metadata_attributes)
     end
 
 end

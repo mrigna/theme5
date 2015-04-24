@@ -12,16 +12,11 @@
 
   <tbody>
     <% @themes.each do |theme| %>
-    <% if theme.id.nil? == false and theme.html_content.nil? == false %>
-      <% @node_id = Node.find_by(:nodeID => theme.nodeID) %>
-      <% @meta_content_id = Metadata.find_by(:contentID =>  theme.contentID) %>
-               
+    <% if theme.id.nil? == false and theme.html_content.nil? == false %>                        
           <tr>
-            <td><%= @meta_content_id.title %></td>
-            <td><%= @meta_content_id.language %></td>
-            <% if @node_id.nil? == false %> 
-            <td><%= @node_id.dg %></td>
-            <% end %>
+            <td><%= theme.metadata.title %></td>
+            <td><%= theme.metadata.language %></td>
+            <td><%= theme.node.dg %></td>
             <td><%= link_to 'Show', theme_path(theme) %></td>
             <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
           <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
