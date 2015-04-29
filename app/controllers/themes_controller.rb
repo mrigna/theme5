@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :new_meta]
+  before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
   after_action :count, only: :create
         
   def index
@@ -25,7 +25,7 @@ class ThemesController < ApplicationController
     @theme.metadata.description = params[:content][:metadata_description][:value].delete!("\n")
     @theme.metadata.keywords = params[:content][:metadata_keywords][:value].delete!("\n")
     # fix node choice for existing nodeID in Node model 
-    #@theme.node_id = params[:content][:node_id][:value]
+    @theme.node_id = params[:node_id]
     @theme.html_content = params[:content][:theme_content][:value].gsub!('&nbsp;','')    
     @theme.save!
    
