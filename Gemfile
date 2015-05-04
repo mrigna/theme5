@@ -30,6 +30,7 @@ gem 'mercury-rails', github: 'jejacks0n/mercury'
 gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 
 gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

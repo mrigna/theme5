@@ -12,10 +12,8 @@
       <%= @theme.metadata.keywords %>
     </div>
     <div>Langue</div><br>
-    <div id="metadata_language" data-mercury="simple">
-        <%= @theme.metadata.language %>
-    </div>
-    </div>
+    <%= select_tag "language",  options_for_select(["FR", "NL", "DE", "EN"]), :id => "lang_select" %>    
+    <%= @theme.metadata.language %>
 
 
 <div>Contenu</div><br>
@@ -23,11 +21,12 @@
     <%= raw @theme.html_content %>
   </div>
 
- <div>Node</div><br>
-    <div id="node_id">
-      <%= collection_select(:node, :id, Node.all, :id, :url_label, {:prompt => "-- Select a category --", :selected => @theme.node_id}) %>
-    </div>
- </div>
+<div>Node</div><br>
+  <% if @theme.node_id.nil? %>
+  <%= collection_select(:node, :id, Node.all, :id, :url_label, {:prompt => "-- Select a category --"}, {:id => 'node_select'}) %>
+  <% else %>
+  <%= @theme.node.url_label %>
+  <% end %>
 
 <script>
 jQuery(parent).trigger('initialize:frame');
@@ -36,8 +35,3 @@ jQuery(parent).trigger('initialize:frame');
 <br>
 <hr /><br>
 <%= link_to 'Back', root_path %>
-
-
-
-
-

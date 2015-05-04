@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'themes/:id/create' => 'themes#create', as: 'mercury_create'  
   get  'themes/:id/update' => 'themes#edit', as: 'update'
   post 'themes/:id/update' => 'themes#mercury_update'
-  
+    
   get  'nodes/index' => 'nodes#index', as: 'nodes'
   get  'searches/index' => 'searches#index', as: 'search'
   
