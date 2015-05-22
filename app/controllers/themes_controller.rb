@@ -2,7 +2,8 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
   after_action :count, only: :create
   after_action :fetch_node, only: :new_entry
-       
+  after_action :fetch_lang, only: :new_entry
+         
   def index
     @@count = Theme.last.id
     @id = @@count
@@ -20,8 +21,6 @@ class ThemesController < ApplicationController
   end
   
   def create   
-    fetch_lang
-    byebug
     @theme.metadata.title = params[:content][:metadata_title][:value].delete!("\n")
     @theme.metadata.description = params[:content][:metadata_description][:value].delete!("\n")
     @theme.metadata.keywords = params[:content][:metadata_keywords][:value].delete!("\n")
@@ -40,19 +39,19 @@ class ThemesController < ApplicationController
   
   def update    
   end
-  
-  def fetch_lang
-    set_theme
-    @theme.metadata.language = params[:lang]
-    
-  end  
-  
+      
   def fetch_node
       n = params[:node_id]
       unless n.nil?
-        @theme.node = Node.find(n)
-        @theme.save
-      end
+        node = Node.find(n)
+        @theme.update(node_id: node.id)
+      end      
+  end
+  
+  def fetch_lang
+      unless params[:lang].blank? == true
+       @theme.metadata.update(language: params[:lang])
+     end
   end
   
     
@@ -72,8 +71,8 @@ class ThemesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_theme
-    @theme = Theme.find(params[:id])
-    @theme.metadata ||= Metadata.new        
+      @theme = Theme.find(params[:id])
+      @theme.metadata ||= Metadata.new
     end
       
     def theme_params

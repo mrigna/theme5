@@ -23,7 +23,7 @@ $(document).ready(function() {
         data: {
           lang : $('#lang_select').val()
         },
-        dataType: "script"
+        dataType: "script"      
       });
      });  
       

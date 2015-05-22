@@ -12,7 +12,9 @@
       <%= @theme.metadata.keywords %>
     </div>
     <div>Langue</div><br>
-    <%= select_tag "language",  options_for_select(["FR", "NL", "DE", "EN"]), :id => "lang_select" %>    
+    <% if @theme.metadata.language.nil? %>   
+    <%= select_tag "language",  options_for_select(["fr", "nl", "de", "en"]), :prompt => "-- Langage --", :id => "lang_select" %>
+    <% end %>
     <%= @theme.metadata.language %>
 
 
