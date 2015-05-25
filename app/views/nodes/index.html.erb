@@ -1,0 +1,29 @@
+<h1>Listing Nodes </h1>
+<!-- Select node range -->
+
+<table>
+  <thead>
+    <tr>
+      <th>Node ID</th>
+      <th>Url Label</th>
+      <th>Hidden</th>
+      <th>DG</th>
+      <th>Count Themes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @nodes.each do |node| %>                      
+          <tr>
+            <td><%= node.id %></td>
+            <td><%= node.url_label %></td>
+            <td><%= node.hidden %></td>
+            <td><%= node.dg %></td>
+            <td><%= Theme.where(node_id: node.id).count %></td>
+            <td><%= link_to 'selection', themes_path(node.id) %></td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>

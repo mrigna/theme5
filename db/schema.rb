@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150422065638) do
     t.integer  "node_id"
     t.string   "contentID"
     t.text     "html_content"
+    t.boolean  "more_about"
+    t.boolean  "is_original"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

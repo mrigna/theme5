@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Titre</th>
       <th>Language</th>
       <th>DG</th>
@@ -12,10 +13,12 @@
 
   <tbody>
     <% @themes.each do |theme| %>
+   
     <% if theme.id.nil? == false and theme.html_content.nil? == false %>                        
           <tr>
-            <td><%= theme.metadata.title %></td>
-            <td><%= theme.metadata.language %></td>
+            <td><%= theme.contentID %></td>
+            <td><%#= theme.metadata.title %></td>
+            <td><%#= theme.metadata.language %></td>
             <td><%= theme.node.dg %></td>
             <td><%= link_to 'Show', theme_path(theme) %></td>
             <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
@@ -28,4 +31,4 @@
 
 <br>
 
-<%= link_to "New Theme",  redirect_path(@id) %>
+<%= link_to "New Theme",  redirect_path(@id) %> | <%= link_to "Back to Node list", nodes_path %>

@@ -1,5 +1,5 @@
 class CreateTablesFromScratch < ActiveRecord::Migration
-   execute 'DROP EXTENSION hstore'    
+  execute 'DROP EXTENSION hstore'    
   execute 'CREATE EXTENSION hstore'
   
     def change
@@ -16,7 +16,9 @@ class CreateTablesFromScratch < ActiveRecord::Migration
       create_table :themes do |t|
         t.belongs_to :node, index: true
         t.string :contentID
-        t.text :html_content 
+        t.text :html_content
+        t.boolean :more_about
+        t.boolean :is_original
         t.timestamps null: false     
       end
        

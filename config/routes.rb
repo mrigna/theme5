@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
-   root 'themes#index'
+  root 'nodes#index'
+  
+  get  'themes/:id/index' => 'themes#index', as: 'themes'
   
   resources :metadata, :only => [:update]
   
   resources :themes, :only => [:destroy, :show, :update] do
     member {post :mercury_update}
   end
-   
+     
   mount Mercury::Engine => '/'
   get  'themes/:id/new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'
   get  'themes/:id/create' => 'themes#new_entry'
   post 'themes/:id/create' => 'themes#create', as: 'mercury_create'  
   get  'themes/:id/update' => 'themes#edit', as: 'update'
   post 'themes/:id/update' => 'themes#mercury_update'
-    
+     
   get  'nodes/index' => 'nodes#index', as: 'nodes'
   get  'searches/index' => 'searches#index', as: 'search'
   

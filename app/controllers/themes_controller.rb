@@ -3,13 +3,13 @@ class ThemesController < ApplicationController
   after_action :count, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
-         
+
   def index
     @@count = Theme.last.id
     @id = @@count
-    @themes = Theme.all.order(id: :asc)
+    @themes = Theme.node(params[:id]).order(id: :asc)
   end
-    
+   
   def show
   end
   
@@ -76,7 +76,7 @@ class ThemesController < ApplicationController
     end
       
     def theme_params
-      params.require(:theme).permit(:html_content, :node_attributes, :metadata_attributes)
+      params.require(:theme).permit(:node_id, :html_content, :node_attributes, :metadata_attributes)
       params.require(:node).permit(:id)
     end
     
