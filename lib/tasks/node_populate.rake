@@ -1,18 +1,20 @@
 namespace :db do
-  desc "create 5000 random nodes"
+  desc "create 30 nodes => 5 by DG"
   task :node_populate => :environment do
 	require 'populator'
 	require 'faker'
     
   @id = []
-    Node.populate 5000 do |node|      
+  @i = 0  
+    Node.populate 30 do |node|      
     @random_id = Faker::Number.number(5)  
     check_if_exist
     node.nodeID = @random_id 
     @id  << node.nodeID  
-    node.url_label = Faker::Internet.domain_suffix
+    node.url_label = Faker::Commerce.product_name
     node.hidden = [true, false].sample(1)
-    node.dg  = ["DG-GS", "DG4", "DG5", "MEDEX", "SHC", "COM/PO"].sample(1)
+    get_dg
+    node.dg = @dg
     puts node.nodeID
 	  end
 	  puts 'All done'
@@ -24,3 +26,14 @@ def check_if_exist
        @random_id = Faker::Number.number(5)      
    end   
 end
+
+def get_dg
+  if @i < 6  
+      @dg  = ["DG-GS", "DG4", "DG5", "MEDEX", "SHC", "COM/PO"][@i]
+      @i += 1
+      else
+      @i = 0
+      get_dg
+  end
+  
+end    

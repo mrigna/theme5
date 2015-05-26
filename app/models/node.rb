@@ -1,7 +1,7 @@
 class Node < ActiveRecord::Base
   has_many :themes
   
-  default_scope { order('"nodeID" ASC') }
+  default_scope { order('"id" ASC') }
   
   def settings
     return (super == "true") if %w{true false}.include? super
