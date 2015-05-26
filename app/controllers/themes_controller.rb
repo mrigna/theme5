@@ -8,6 +8,7 @@ class ThemesController < ApplicationController
     @@count = Theme.last.id
     @id = @@count
     @themes = Theme.node(params[:id]).order(id: :asc)
+    @dg = @themes.first.node.dg
   end
    
   def show

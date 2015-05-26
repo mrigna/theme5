@@ -1,6 +1,8 @@
 <h1>Listing themes </h1>
+
 <p id="notice"><%= notice %></p>
-<table>
+
+<table  width="60%" rules="groups">
   <thead>
     <tr>
       <th>ID</th>
@@ -12,9 +14,11 @@
   </thead>
 
   <tbody>
+    
+    
     <% @themes.each do |theme| %>
    
-    <% if theme.id.nil? == false and theme.html_content.nil? == false %>                        
+    <% if theme.id.nil? == false and theme.html_content.nil? == false %>                             
           <tr>
             <td><%= theme.contentID %></td>
             <td><%= theme.metadata.title %></td>
@@ -31,4 +35,4 @@
 
 <br>
 
-<%= link_to "New Theme",  redirect_path(@id) %> | <%= link_to "Back to Node list", nodes_path %>
+<%= link_to "New Theme",  redirect_path(@id) %> | <%= link_to "Back to Node list", nodes_path(@dg) %>

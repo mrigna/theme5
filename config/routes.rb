@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'nodes#index'
+  root :to =>'nodes#index'
   
   get  'themes/:id/index' => 'themes#index', as: 'themes'
   
@@ -16,12 +16,15 @@ Rails.application.routes.draw do
   get  'themes/:id/update' => 'themes#edit', as: 'update'
   post 'themes/:id/update' => 'themes#mercury_update'
      
-  get  'nodes/index' => 'nodes#index', as: 'nodes'
-  get  'searches/index' => 'searches#index', as: 'search'
+  get  'nodes/:dg/index' => 'nodes#index', as: 'nodes'
+  get 'nodes/simple_search' => 'nodes#simple', as: 'simple_search'
   
-  resources :nodes   do
+  resources :nodes,  :only => :none do
     collection { post :search, to: 'nodes#index' }
   end
+
+ 
+  get  'searches/index' => 'searches#index', as: 'search'
   
   
   
