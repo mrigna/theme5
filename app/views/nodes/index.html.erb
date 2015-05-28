@@ -1,6 +1,6 @@
-<h1>Listing Nodes </h1>
+<h1><%= @title %></h1>
 
-<%= render 'links' %>
+<%= render @header %>
 <br />
 <hr/>
 
@@ -20,4 +20,6 @@
   </tbody>
 </table>
 <br /> <br/ >
+<% if @title == "Node listing" %>
 <%= paginate @node_select, :params => {:controller => 'nodes', :action => 'index'} %>
+<% end %>

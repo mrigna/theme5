@@ -1,18 +1,22 @@
 class NodesController < ApplicationController
-  before_action :clear_search_index, only: :simple
-  before_action :set_nodes, only: [:index, :simple]
-  
-  
+   before_action :set_nodes, :check_page_style, only: [:index, :simple]
+     
   def index   
     @nodes = Node.all
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20)
+    @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]
   end
   
-  def simple
-    @node_select =  @q.result(distinct: true)
-    render 'simple_search'
-    clear_search_index
+  def check_page_style
+    if params[:authenticity_token].nil?
+      @title = "Node listing"
+      @header = 'links'
+    else
+      @title = "Simple Search"
+      @header = 'search'
+    end
   end
+
   
   private
   def set_nodes
@@ -22,8 +26,7 @@ class NodesController < ApplicationController
     else
     @q = Node.dg(@dg).ransack(params[:q])
     end
-    @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]
-    
+      
   end
   
  

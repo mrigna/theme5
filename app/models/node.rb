@@ -1,14 +1,14 @@
 class Node < ActiveRecord::Base
   has_many :themes
   
-  default_scope { order('"id" ASC') }
+  default_scope { order('"nodeID" ASC') }
   
   def settings
     return (super == "true") if %w{true false}.include? super
     super
   end
 
-  scope :dg, -> (name_dg) { where dg: name_dg }
+  scope :dg, -> (name_dg) { where(dg: name_dg) }
   
     
   store_accessor :label_translations, :fr, :nl, :de, :en
