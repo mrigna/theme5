@@ -1,5 +1,5 @@
 class NodesController < ApplicationController
-   before_action :set_nodes, :check_page_style, only: [:index, :simple]
+   before_action :set_nodes, :check_page_style, only: :index
      
   def index   
     @nodes = Node.all

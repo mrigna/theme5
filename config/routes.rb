@@ -17,14 +17,19 @@ Rails.application.routes.draw do
   post 'themes/:id/update' => 'themes#mercury_update'
      
   get  'nodes/:dg/index' => 'nodes#index', as: 'nodes'
-get 'nodes/simple_search' => 'nodes#index', as: 'simple_search'
+  get 'nodes/simple_search' => 'nodes#index', as: 'simple_search'
   
   resources :nodes,  :only => :none do
     collection { post :search, to: 'nodes#index' }
   end
+  get  'searches/index' => 'searches#index', as: 'search'
+    
+  resources :searches,  :only => :none do
+    collection { post :search, to: 'searches#index' }
+  end
 
  
-  get  'searches/index' => 'searches#index', as: 'search'
+  
   
   
   

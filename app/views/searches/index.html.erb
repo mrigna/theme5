@@ -1,0 +1,28 @@
+<h1>Advanced Search</h1>
+<%= search_form_for @q, url: search_searches_path, method: :post do |f| %>
+  <%= f.condition_fields do |c| %>
+  <%= render "condition_fields", f: c%>
+  <% end %>
+  
+  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+  <div class="actions"><%= f.submit "Search" %></div>
+
+<% end %>
+
+<div><%= link_to "Home", root_path %> |<%= link_to "Reset", search_path, method: :get %></div>
+<table> 
+  <tbody>
+    <% @search.each do |t| %>      
+        <tr>
+          <% unless t.metadata.nil? %>
+          <td><%= t.contentID %></td>
+          <td><%= t.node.nodeID %></td>
+          <td><%= t.node.dg %></td>
+          <td><%= t.metadata.title %></td>
+          <td><%= t.metadata.keywords %></td>
+          <% end %>
+        </tr>     
+    <% end %>
+  </tbody>
+</table>
+
