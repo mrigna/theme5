@@ -1,3 +1,6 @@
+<div><%= link_to "Home", root_path %> | <%= link_to "Reset", simple_search_path, method: :get %></div>
+<br />
+
 <div class="field" >
   <%= search_form_for @q, url: search_nodes_path, method: :post do |f| %>
 </div>
@@ -17,7 +20,7 @@
   <%= f.select :dg_cont, @choice_dg %>
 </div>
 <div class="actions"><%= f.submit "Search"%></div>
-<div><%= link_to "Home", root_path %> | <%= link_to "Reset", simple_search_path, method: :get %></div>
+
 
 
 <% end %>

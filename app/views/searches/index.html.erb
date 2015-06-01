@@ -1,4 +1,6 @@
 <h1>Advanced Search</h1>
+<div><%= link_to "Home", root_path %> |<%= link_to "Reset", search_path, method: :get %></div>
+<br />
 <%= search_form_for @q, url: search_searches_path, method: :post do |f| %>
   <%= f.condition_fields do |c| %>
   <%= render "condition_fields", f: c%>
@@ -9,7 +11,7 @@
 
 <% end %>
 
-<div><%= link_to "Home", root_path %> |<%= link_to "Reset", search_path, method: :get %></div>
+
 <table> 
   <tbody>
     <% @search.each do |t| %>      
@@ -20,6 +22,8 @@
           <td><%= t.node.dg %></td>
           <td><%= t.metadata.title %></td>
           <td><%= t.metadata.keywords %></td>
+          <td><%= link_to "Show content", theme_path(t)  %></td>
+          <td><%= link_to "Go to node", root_path + "themes/#{t.node.id}/index" %></td>
           <% end %>
         </tr>     
     <% end %>

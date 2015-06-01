@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  rescue_from ActiveRecord::StatementInvalid, :with => :my_custom_error_handler
+  
   def search_params
   params[:q]
   end
@@ -17,4 +19,15 @@ class ApplicationController < ActionController::Base
           end
        end
   end
+  
+  
+    protected
+
+    def my_custom_error_handler(exception)
+      render "error"
+    end
+  
+  
+  
+  
 end
