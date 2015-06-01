@@ -1,7 +1,13 @@
+<% if @title.present? %>
 <h1><%= @title %></h1>
-
-<%= render @header %>
-<br />
+   <% if @title == "Simple Search" %>
+    <%=  render 'search' %>
+   <% end %>
+<% else %>
+<h1><%= "all" %></h1>
+<% end %>  
+  
+   
 <hr/>
 
 <table width="60%">

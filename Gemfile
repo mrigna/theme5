@@ -31,6 +31,8 @@ gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.2'
 
 gem 'kaminari'
 
+gem 'zurb-foundation'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
