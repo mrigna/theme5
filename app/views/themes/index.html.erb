@@ -2,7 +2,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<table role="grid">
+<table role="grid" width="100%">
   <thead>
     <tr>
       <th>ID</th>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to "Back to Node list", nodes_path(@dg) %> | <%= link_to "New Theme",  redirect_path(@id) %>
+<%= link_to "Back to Node list", nodes_path(@dg), class: "button secondary"  %> | <%= link_to "Create new Theme",  redirect_path(@id), class: "button alert" %>

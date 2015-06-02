@@ -7,16 +7,16 @@
   <% end %>
   
   <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
-  <div class="actions"><%= f.submit "Search" %></div>
+  <div class="actions"><%= f.submit "Search", class: "button radius"  %></div>
 
 <% end %>
 
 
-<table role="grid">
+<table role="grid" width="100%">
   <thead>
     <tr>
-      <th>Node ID</th>
       <th>Theme ID</th>
+      <th>Node ID</th>
       <th>Dg</th>
       <th>Theme Title</th>
       <th>Theme keywords</th>

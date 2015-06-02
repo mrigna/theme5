@@ -65,7 +65,7 @@ $default-float: left;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: url("http://fonts.googleapis.com/css?family=Nunito:400,300,700");
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -1325,3 +1325,8 @@ $default-float: left;
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
 @import 'foundation';
+
+// Foundation by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+

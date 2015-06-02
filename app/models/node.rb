@@ -16,8 +16,7 @@ class Node < ActiveRecord::Base
  
   private    
     def self.ransackable_attributes(auth_object = nil)
-      ["nodeID", "url_label", "dg"]
-      # remove nodeID without destroying simple search      
+       ["nodeID", "url_label", "dg"]
     end
    
 end

@@ -1,8 +1,9 @@
 <div class="field">
   <%= f.attribute_fields do |a| %>
-  <%= a.attribute_select  associations: [:node, :metadata]%>
+  <%= a.attribute_select associations: [:node, :theme, :metadata] %>
   <% end %>
-  <%= f.predicate_select only: %i(cont not_cont eq not_eq), compounds: false %>
+  
+  <%= f.predicate_select only: %i(cont not_cont eq not_eq lt lteq gt gteq), compounds: false %>
   <%= f.value_fields do |v| %>
 	<%= v.text_field :value %>
   <% end %>
