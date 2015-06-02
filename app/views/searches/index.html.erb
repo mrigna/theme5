@@ -12,11 +12,24 @@
 <% end %>
 
 
-<table> 
+<table role="grid">
+  <thead>
+    <tr>
+      <th>Node ID</th>
+      <th>Theme ID</th>
+      <th>Dg</th>
+      <th>Theme Title</th>
+      <th>Theme keywords</th>
+      <th>Link to Theme</th>
+      <th>Link to Node</th>
+      
+     </tr>
+    </thead> 
+  
   <tbody>
     <% @search.each do |t| %>      
         <tr>
-          <% unless t.metadata.nil? %>
+          <% unless t.metadata.nil? or t.node.nil?%>
           <td><%= t.contentID %></td>
           <td><%= t.node.nodeID %></td>
           <td><%= t.node.dg %></td>

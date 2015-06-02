@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   before_action :set_nodes, only: :index
-     
+  
   def index   
     @nodes = Node.all
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20)
@@ -8,6 +8,10 @@ class NodesController < ApplicationController
   end
     
   private
+  def node_params
+    params.require(:node).permit(:nodeID)
+  end
+  
   def set_nodes
      @dg = params[:dg]
     if @dg == "all" or @dg.nil?
@@ -23,7 +27,5 @@ class NodesController < ApplicationController
     end      
   end
   
- 
-   
 end
  

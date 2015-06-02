@@ -10,9 +10,20 @@
    
 <hr/>
 
-<table width="60%">
-    <tbody>
-    
+<table role="grid">
+  <thead>
+    <tr>
+      <th>Node ID</th>
+      <th>Url Tag</th>
+      <th>Hidden</th>
+      <th>DG</th>
+      <th>Number objects</th>
+      <th>Link to objects</th>
+      
+     </tr>
+    </thead>
+  
+    <tbody>    
     <% @node_select.each do |node| %>                      
           <tr>
             <td><%= node.nodeID %></td>
