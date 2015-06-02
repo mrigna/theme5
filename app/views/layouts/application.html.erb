@@ -17,6 +17,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "FPS Health Belgium | #{@title}" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
