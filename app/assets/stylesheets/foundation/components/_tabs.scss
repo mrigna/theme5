@@ -34,6 +34,7 @@ $tabs-vertical-navigation-margin-bottom: 1.25rem !default;
 
       dd,
       .tab-title {
+        border: 1px solid #ccc;
         float: $default-float;
         list-style: none;
         margin-bottom: 0 !important;

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     collection { post :search, to: 'nodes#index' }
   end
   get  'searches/index' => 'searches#index', as: 'search'
+  get  'searches/search' => 'searches#index'
     
   resources :searches,  :only => :none do
     collection { post :search, to: 'searches#index' }

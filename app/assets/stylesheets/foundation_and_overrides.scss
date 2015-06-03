@@ -64,8 +64,9 @@ $em-base: 16px !default;
 $default-float: left;
 
 // $body-bg: #fff;
-// $body-font-color: #222;
-$body-font-family: url("http://fonts.googleapis.com/css?family=Nunito:400,300,700");
+$body-font-color: #22181d;
+//$body-font-family: url(GothamLight.woff);
+
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -1324,7 +1325,9 @@ $body-font-family: url("http://fonts.googleapis.com/css?family=Nunito:400,300,70
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
 
-@import 'foundation';
+
+
+@import 'foundation/foundation';
 
 // Foundation by ZURB
 // foundation.zurb.com

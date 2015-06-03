@@ -5,6 +5,7 @@ class ThemesController < ApplicationController
   after_action :fetch_lang, only: :new_entry
 
   def index
+    @select = []
     @@count = Theme.last.id
     @id = @@count
     @themes = Theme.node(params[:id]).order(id: :asc)

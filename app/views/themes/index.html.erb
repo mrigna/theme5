@@ -16,24 +16,36 @@
 
   <tbody> 
     
-    <% @themes.each do |theme| %>
-   
-    <% if theme.id.nil? == false and theme.html_content.nil? == false %>                             
-          <tr>
-            <td><%= theme.contentID %></td>
-            <td><%= theme.metadata.title %></td>
-            <td><%= theme.metadata.language %></td>
-            <td><%= theme.node.dg %></td>
-            <td><%= link_to 'Show', theme_path(theme) %></td>
-            <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
-          <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-            <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %>  
-        </tr>
-    <% end %>
+     <% @themes.each do |theme| %>
+        <% if theme.id.nil? == false and theme.html_content.nil? == false %>       
+                <% @select << theme.id %>
+                <tr>
+                <td><%= theme.contentID %></td>
+                <td><%= theme.metadata.title %></td>
+                <td><%= theme.metadata.language %></td>
+                <td><%= theme.node.dg %></td>
+                <td><%= link_to 'Show', theme_path(theme) %></td>
+                <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
+              <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+                <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %>  
+            </tr>
+        <% end %>
     <% end %>
   </tbody>
 </table>
 
+<ul class="tabs" data-tab >  
+    <%= render 'tabs' %>
+</ul>
+<div class="tabs-content">
+    <%= render 'buttons' %>
+    <%= render 'html_content' %>
+</div>
+
+
+
+
+
 <br>
 
-<%= link_to "Back to Node list", nodes_path(@dg), class: "button secondary"  %> | <%= link_to "Create new Theme",  redirect_path(@id), class: "button alert" %>
+<%= link_to "Back to Node list", nodes_path(@dg), class: "button secondary"  %> <%= link_to "Create new Theme",  redirect_path(@id), class: "button alert" %>

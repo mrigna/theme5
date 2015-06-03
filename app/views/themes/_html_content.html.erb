@@ -1,0 +1,24 @@
+<div class="tabs-content">
+  <br />
+  <div class="content active" id="panel1">
+    <p>Content title: <%= @themes.first.metadata.title %></p>
+    <div> <%= raw @themes.first.html_content %></div>
+  </div>
+
+<div class="content" id="panel2">
+    <p>Content title: <%= @themes[1].metadata.title %></p>
+    <div> <%= raw @themes[1].html_content %></div>
+ </div>
+  
+  
+  <div class="content" id="panel3">
+    <p>Content title: <%= @themes[2].metadata.title %></p>
+    <div> <%= raw @themes[2].html_content %></div>
+ </div>
+  
+  <div class="content" id="panel4">
+    <p>Content title: <%= @themes[3].metadata.title %></p>
+    <div> <%= raw @themes[3].html_content %></div>
+ </div>
+
+
