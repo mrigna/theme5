@@ -1,20 +1,9 @@
-<li class="tab-title active" role="presentational" >
-  <a href="#panel1">
-  <%= @themes[0].metadata.language %>
-  </a>
-</li>
+<% i = 0 %>
+<% @themes.each do %>
 <li class="tab-title" role="presentational" >
-  <a href="#panel2">
-  <%= @themes[1].metadata.language %>
+  <a href="#panel<%=i+1%>">
+  <%= @themes[i].metadata.language %>
   </a>
 </li>
-<li class="tab-title" role="presentational" >
-  <a href="#panel3">
-  <%= @themes[2].metadata.language %>
-  </a>
-</li>
-<li class="tab-title" role="presentational" >
-  <a href="#panel4">
-  <%= @themes[3].metadata.language %>
-  </a>
-</li>
+<% i += 1 %>
+<% end %>

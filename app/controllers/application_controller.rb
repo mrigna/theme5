@@ -21,6 +21,15 @@ class ApplicationController < ActionController::Base
   end
   
   
+  ##### CHECK STORE IN SESSION  ####
+  
+  def get_query(cookie_key)
+    cookies.delete(cookie_key) if params[:clear]
+    cookies[cookie_key] = params[:q].to_json if params[:q]
+    @query = params[:q].presence || JSON.load(cookies[cookie_key])
+  end
+  
+  
     protected
 
     def my_custom_error_handler(exception)

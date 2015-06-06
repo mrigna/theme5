@@ -1,4 +1,8 @@
 class SearchesController < ApplicationController
+  
+  before_action only: [:index] do
+      get_query('query_themes')
+  end
  
   def index
     @q = Theme.all.ransack(params[:q])

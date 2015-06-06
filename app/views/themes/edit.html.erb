@@ -7,7 +7,17 @@
     <%= raw @theme.html_content %>
   </div>
   
-<div><%= link_to 'Back',  themes_path(@theme.node_id) %></div>
+<div>
+	
+	<!-- NOT WORKING -->
+	
+	<% if params[:q].present? %>
+	<%= link_to 'Back',  search_path %>
+	<% else %>
+	<%= link_to 'Back', themes_path(@theme.node_id) %>
+	<% end %>
+	
+</div>
 
 <td><%= link_to 'Update', "/editor"  + update_path(@theme), id: "edit_link", data: {save_url: mercury_update_theme_path(@theme)} %></td>
 

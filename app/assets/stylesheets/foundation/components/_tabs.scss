@@ -47,6 +47,7 @@ $tabs-vertical-navigation-margin-bottom: 1.25rem !default;
           font-family: $tabs-navigation-font-family;
           font-size: $tabs-navigation-font-size;
           padding: $tabs-navigation-padding $tabs-navigation-padding * 2;
+		  border-radius: 20px;
 
           &:hover {
             background-color: $tabs-navigation-hover-bg-color;

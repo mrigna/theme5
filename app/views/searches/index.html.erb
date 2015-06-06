@@ -20,8 +20,8 @@
       <th>Dg</th>
       <th>Theme Title</th>
       <th>Theme keywords</th>
-      <th>Link to Theme</th>
-      <th>Link to Node</th>
+      <th colspan="2"></th>
+      <th>Node actions</th>
       
      </tr>
     </thead> 
@@ -35,7 +35,8 @@
           <td><%= t.node.dg %></td>
           <td><%= t.metadata.title %></td>
           <td><%= t.metadata.keywords %></td>
-          <td><%= link_to "Show content", theme_path(t)  %></td>
+          <td><%= link_to "Edit content", "/editor"  + update_path(t), id: "edit_link", data: {save_url: mercury_update_theme_path(t)}   %></td>
+		  <td><%= link_to "Show content", theme_path(t)  %></td>
           <td><%= link_to "Go to node", root_path + "themes/#{t.node.id}/index" %></td>
           <% end %>
         </tr>     
