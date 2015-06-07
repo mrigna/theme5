@@ -1,25 +1,28 @@
-<div><%= link_to "Home", root_path %> | <%= link_to "Reset", simple_search_path, method: :get %></div>
+<div><%= link_to "Home", root_path %></div>
 <br />
 
-<div class="field" >
-  <%= search_form_for @q, url: search_nodes_path, method: :post do |f| %>
-</div>
+<div class="panel">
+	<div class="field" >
+	  <%= search_form_for @q, url: search_nodes_path, method: :post do |f| %>
+	</div>
 
-<div class="field" >
-  <%= f.label :url_label_cont %> 
-  <%= f.search_field :url_label_cont %>
+	<div class="field" >
+	  <%= f.label :url_label_cont %> 
+	  <%= f.search_field :url_label_cont %>
+	</div>
+	<div class="field" >
+	  <%= f.label :nodeID_gteq, "nodes ID from" %>
+	  <%= f.text_field :nodeID_gteq %> 
+	  <%= f.label :nodeID_lteq, "to" %>
+	  <%= f.text_field :nodeID_lteq %>
+	</div>
+	<div class="field" >
+	  <%= f.label :dg_cont %>
+	  <%= f.select :dg_cont, @choice_dg %>
+	</div>
 </div>
-<div class="field" >
-  <%= f.label :nodeID_gteq, "nodes ID from" %>
-  <%= f.text_field :nodeID_gteq %> 
-  <%= f.label :nodeID_lteq, "to" %>
-  <%= f.text_field :nodeID_lteq %>
-</div>
-<div class="field" >
-  <%= f.label :dg_cont %>
-  <%= f.select :dg_cont, @choice_dg %>
-</div>
-<div class="actions"><%= f.submit "Search", class: "button radius"%></div>
+<div class="actions"><%= f.submit "Search", class: "button radius"%>
+<%= link_to "Clear Search", simple_search_path, method: :get, class:"button secondary" %></div>
 
 <% end %>
 

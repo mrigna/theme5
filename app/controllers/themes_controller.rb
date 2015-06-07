@@ -3,12 +3,17 @@ class ThemesController < ApplicationController
   after_action :count, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
-
+  after_action :save_my_previous_url, only: :index
+  
   def index
     @@count = Theme.last.id
     @id = @@count
     @themes = Theme.node(params[:id]).order(id: :asc)
     @dg = @themes.first.node.dg
+  end
+  
+  def save_my_previous_url
+    session[:my_previous_url] = request.path
   end
    
   def show
@@ -58,7 +63,7 @@ class ThemesController < ApplicationController
     
   def mercury_update
     @theme.html_content = params[:content][:theme_content][:value]
-    @theme.save   
+    @theme.save
     render text: ""
   end  
   

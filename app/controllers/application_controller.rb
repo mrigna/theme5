@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   rescue_from ActiveRecord::StatementInvalid, :with => :my_custom_error_handler
-  
+ 
   def search_params
   params[:q]
   end
@@ -18,15 +18,6 @@ class ApplicationController < ActionController::Base
             end
           end
        end
-  end
-  
-  
-  ##### CHECK STORE IN SESSION  ####
-  
-  def get_query(cookie_key)
-    cookies.delete(cookie_key) if params[:clear]
-    cookies[cookie_key] = params[:q].to_json if params[:q]
-    @query = params[:q].presence || JSON.load(cookies[cookie_key])
   end
   
   

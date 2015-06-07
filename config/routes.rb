@@ -21,18 +21,13 @@ Rails.application.routes.draw do
   
   resources :nodes,  :only => :none do
     collection { post :search, to: 'nodes#index' }
+    collection { get :search, to: 'nodes#index' }
   end
-  get  'searches/index' => 'searches#index', as: 'search'
-  get  'searches/search' => 'searches#index'
-    
+  
   resources :searches,  :only => :none do
-    collection { post :search, to: 'searches#index' }
+    collection { post :search, to: 'searches#index'}
+    collection { get :search, to: 'searches#index'}
   end
-
- 
-  
-  
-  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -19,7 +19,7 @@
   	
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= stylesheet_link_tag    "application",  media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
     <%= csrf_meta_tags %>
   </head>
 
@@ -46,7 +46,7 @@
       <li class="divider"></li>
       <li><%= link_to "Simple Search", simple_search_path, method: :get %> </li>
       <li class="divider"></li>
-      <li><%= link_to "Advanced Search", search_path, method: :get %> </li>
+      <li><%= link_to "Advanced Search", search_searches_path, method: :get %> </li>
     </ul>
   </section>
 </nav>
