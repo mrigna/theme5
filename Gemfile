@@ -35,6 +35,8 @@ gem 'zurb-foundation'
 
 gem 'words_counted'
 
+gem 'boilerpipe'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

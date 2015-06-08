@@ -37,8 +37,8 @@
           <td><%= t.metadata.title %></td>
           <td><%= t.metadata.keywords %></td>
           <td><%= link_to "Edit content", "/editor"  + update_path(t), id: "edit_link", data: {save_url: mercury_update_theme_path(t)}   %></td>
-		  <td><%= link_to "Show content", theme_path(t)  %></td>
-		  <td><%#= link_to "Show original", insert boilerpipe link %></td>
+		      <td><%= link_to "Show content", theme_path(t)  %></td>
+          <td><%= link_to "Show original", search_original_path(t.contentID) %></td>
           <td><%= link_to "Go to node", root_path + "themes/#{t.node.id}/index" %></td>
           <% end %>
         </tr>

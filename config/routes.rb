@@ -27,7 +27,11 @@ Rails.application.routes.draw do
   resources :searches,  :only => :none do
     collection { post :search, to: 'searches#index'}
     collection { get :search, to: 'searches#index'}
+    get 'show_original' => 'searches#show_original', as: 'original'
   end
+
+  
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

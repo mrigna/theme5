@@ -1,0 +1,6 @@
+<br/>
+<%= link_to 'Go back', session[:my_previous_url], class: "button round tiny info" %>
+
+<!-- Remove "Link to home - <A href=\"/eportal/index.htm\">Home</A>" with gsub -->
+
+<%= render html: Boilerpipe.extract("portal/#{params[:search_id]}", {:output => :htmlFragment}).html_safe %>

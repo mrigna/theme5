@@ -16,5 +16,9 @@ class SearchesController < ApplicationController
    @q.build_condition if @q.conditions.empty?
    @q.build_sort if @q.sorts.empty?    
   end
+  
+  def show_original
+    render 'original'
+  end
 
 end
