@@ -1,8 +1,9 @@
+<!-- Fix "active content" issue -->
 <% i = 0 %>
 <div class="tabs-content">
   <% @themes.each do %>
-  <div class="content active" id="panel<%=i+1%>">
-  <% link_to "Back to Node list", nodes_path(@dg), class: "button secondary"  %> <%= link_to "Edit theme", "/editor"  + update_path(@themes[i]), id: "edit_link", data: {save_url: mercury_update_theme_path(@themes[i])} %>
+  <div class="content" id="panel<%=i+1%>">
+  <% link_to "Back to Node list", session[:my_previous_url], class: "button secondary"  %> <%= link_to "Edit theme", "/editor"  + update_theme_path(@themes[i]), id: "edit_link", data: {save_url: mercury_update_theme_path(@themes[i])} %>
  <br />
   <p>Content title: <%= @themes[i].metadata.title %></p>
   <div> <%= raw @themes[i].html_content %></div>

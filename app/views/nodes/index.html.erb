@@ -1,12 +1,17 @@
-<% if @title.present? %>
-<h1><%= @title %></h1>
-   <% if @title == "Simple Search" %>
-    <%=  render 'search' %>
-   <% end %>
-<% else %>
-<h1><%= "all" %></h1>
-<% end %>  
-  
+
+  <% if @title.present? %>
+  <h1><%= @title %></h1>
+     <% if @title == "Simple Search" %>
+      <%=  render 'search' %>
+     <% end %>
+  <% else %>
+    <% unless session[:my_previous_url].include? 'nodes/search'%>
+          <%=  render 'search' %>
+    <% else %>
+    <h1><%= "all" %></h1>
+    <% end %>
+  <% end %>
+
    
 <hr/>
 
@@ -31,7 +36,7 @@
             <td><%= node.hidden %></td>
             <td><%= node.dg %></td>
             <td><%= Theme.where(node_id: node.id).count %></td>
-            <td><%= link_to 'selection', themes_path(node.id) %></td>
+            <td><%= link_to 'selection', node_themes_path(node.id) %></td>
           </tr>
     <% end %>
   </tbody>

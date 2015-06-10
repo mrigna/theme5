@@ -1,36 +1,36 @@
 Rails.application.routes.draw do
-  root :to =>'nodes#index'
-  
-  get  'themes/:id/index' => 'themes#index', as: 'themes'
-  
-  resources :metadata, :only => [:update]
-  
-  resources :themes, :only => [:destroy, :show, :update] do
-    member {post :mercury_update}
-  end
-     
+  root :to =>'nodes#home'  
   mount Mercury::Engine => '/'
-  get  'themes/:id/new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'
-  get  'themes/:id/create' => 'themes#new_entry'
-  post 'themes/:id/create' => 'themes#create', as: 'mercury_create'  
-  get  'themes/:id/update' => 'themes#edit', as: 'update'
-  post 'themes/:id/update' => 'themes#mercury_update'
+  
+  shallow do
+    resources :nodes, :only => :none do
+      collection { post :search, to: 'nodes#index' }
+      collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
+      collection {get  'simple_search' => 'nodes#index', as: 'simple_search'}      
      
-  get  'nodes/:dg/index' => 'nodes#index', as: 'nodes'
-  get 'nodes/simple_search' => 'nodes#index', as: 'simple_search'
-  
-  resources :nodes,  :only => :none do
-    collection { post :search, to: 'nodes#index' }
-    collection { get :search, to: 'nodes#index' }
-  end
-  
-  resources :searches,  :only => :none do
-    collection { post :search, to: 'searches#index'}
-    collection { get :search, to: 'searches#index'}
-    get 'show_original' => 'searches#show_original', as: 'original'
+        resources :themes, :only => [:destroy, :show, :update] do
+            collection {get 'index' => 'themes#index'}
+            member {post :mercury_update}
+            member {get  'new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'}
+            member {get 'create' => 'themes#new_entry'}
+            member {post 'create' => 'themes#create', as: 'mercury_create'}
+            member {get 'update' => 'themes#edit', as: 'update'}
+            member {get 'show' => 'themes#show', as: 'show'}
+            member {post 'update' => 'themes#mercury_update'}
+         end
+    end
   end
 
-  
+   resources :searches,  :only => :none do
+     collection do
+       get 'index'
+       post 'index'
+     end
+    
+    get 'show_original' => 'searches#show_original', as: 'original'
+  end
+ 
+  resources :metadata, :only => [:update]  
 
   
   # The priority is based upon order of creation: first created -> highest priority.

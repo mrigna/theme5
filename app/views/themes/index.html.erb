@@ -23,8 +23,8 @@
                 <td><%= theme.metadata.title %></td>
                 <td><%= theme.metadata.language %></td>
                 <td><%= theme.node.dg %></td>
-                <td><%= link_to 'Show', theme_path(theme) %></td>
-                <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
+                <td><%= link_to 'Show', show_theme_path(theme) %></td>
+                <td><%= link_to 'Edit', "/editor"  + update_theme_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
                 <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
                 <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %>  
             </tr>
@@ -40,10 +40,12 @@
     <%= render 'html_content' %>
 </div>
 
-
-
-
-
 <br>
+<% if session[:my_previous_url].include? 'nodes/search'%>
+<%= link_to "Back to Node list", simple_search_nodes_path, method: :get, class: "button secondary"  %>
+<%# elsif session[:my_previous_url].include? 'themes/index' %>
+<%#= link_to "Back to Node list", dg_nodes_path(@dg), class: "button secondary"  %>
+<% elsif %>
+<%= link_to "Back", session[:my_previous_url], class: "button secondary"  %> <%= link_to "Create new Theme",  redirect_theme_path(@id), class: "button alert" %>
+<% end %>
 
-<%= link_to "Back to Node list", nodes_path(@dg), class: "button secondary"  %> <%= link_to "Create new Theme",  redirect_path(@id), class: "button alert" %>

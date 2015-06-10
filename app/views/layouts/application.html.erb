@@ -30,23 +30,23 @@
   <section class="top-bar-section">
     <ul class="right">
       <li class="divider"></li>
-      <li> <%= link_to "Show all nodes", nodes_path("all") %></li>
+      <li> <%= link_to "Show all nodes", dg_nodes_path("all") %></li>
       <li class="divider"></li>
-      <li><%= link_to "DG-GS", nodes_path("dg-gs") %></li>
+      <li><%= link_to "DG-GS", dg_nodes_path("dg-gs") %></li>
        <li class="divider"></li>
-      <li><%= link_to "DG4", nodes_path("dg4") %></li>
+      <li><%= link_to "DG4", dg_nodes_path("dg4") %></li>
       <li class="divider"></li>
-      <li><%= link_to "DG5", nodes_path("dg5") %> </li>
+      <li><%= link_to "DG5", dg_nodes_path("dg5") %> </li>
       <li class="divider"></li>
-      <li><%= link_to "MEDEX", nodes_path("medex") %> </li>
+      <li><%= link_to "MEDEX", dg_nodes_path("medex") %> </li>
       <li class="divider"></li>
-      <li><%= link_to "SHC", nodes_path("shc") %></li>
+      <li><%= link_to "SHC", dg_nodes_path("shc") %></li>
       <li class="divider"></li>
-      <li><%= link_to "COM/PO", nodes_path("com-po") %> </li>
+      <li><%= link_to "COM/PO", dg_nodes_path("com-po") %> </li>
       <li class="divider"></li>
-      <li><%= link_to "Simple Search", simple_search_path, method: :get %> </li>
+      <li><%= link_to "Simple Search", simple_search_nodes_path, method: :get %> </li>
       <li class="divider"></li>
-      <li><%= link_to "Advanced Search", search_searches_path, method: :get %> </li>
+      <li><%= link_to "Advanced Search", searches_path, method: :get %> </li>
     </ul>
   </section>
 </nav>

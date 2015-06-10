@@ -3,7 +3,7 @@
 <br />
 
   
-	  <%= search_form_for @q, url: search_searches_path, method: :post do |f| %>
+	  <%= search_form_for @q, url: searches_path, method: :post do |f| %>
  	  <%= f.condition_fields do |c| %>
   	  <%= render "condition_fields", f: c%>
   	  <% end %>
@@ -36,10 +36,10 @@
           <td><%= t.node.dg %></td>
           <td><%= t.metadata.title %></td>
           <td><%= t.metadata.keywords %></td>
-          <td><%= link_to "Edit content", "/editor"  + update_path(t), id: "edit_link", data: {save_url: mercury_update_theme_path(t)}   %></td>
-		      <td><%= link_to "Show content", theme_path(t)  %></td>
+          <td><%= link_to "Edit content", "/editor"  + update_theme_path(t), id: "edit_link", data: {save_url: mercury_update_theme_path(t)}   %></td>
+          <td><%= link_to "Show content", show_theme_path(t)  %></td>
           <td><%= link_to "Show original", search_original_path(t.contentID) %></td>
-          <td><%= link_to "Go to node", root_path + "themes/#{t.node.id}/index" %></td>
+          <td><%= link_to "Go to node", root_path + "nodes/#{t.node.id}/themes/index" %></td>
           <% end %>
         </tr>
 		   

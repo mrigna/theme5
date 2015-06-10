@@ -8,8 +8,7 @@ class ThemesController < ApplicationController
   def index
     @@count = Theme.last.id
     @id = @@count
-    @themes = Theme.node(params[:id]).order(id: :asc)
-    @dg = @themes.first.node.dg
+    @themes = Theme.node(params[:node_id]).order(id: :asc)
   end
   
   def save_my_previous_url

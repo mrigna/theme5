@@ -8,9 +8,9 @@
   </div>
   
 <div>
-	<%= link_to 'Go back', session[:my_previous_url] %>
+  <%= link_to 'Go back', node_themes_path(@theme.node_id) %>
 </div>
 
-<td><%= link_to 'Update', "/editor"  + update_path(@theme), id: "edit_link", data: {save_url: mercury_update_theme_path(@theme)} %></td>
+<td><%= link_to 'Update', "/editor"  + update_theme_path(@theme), id: "edit_link", data: {save_url:mercury_update_theme_path(@theme)} %></td>
 
  
