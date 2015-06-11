@@ -1,17 +1,15 @@
 <% if @title.present? %>
-<h1><%= @title.upcase %></h1>
+<b><%= @title.upcase %></b>
      <% if @title == "Simple Search" %>
-      <%=  render 'search' %>
+     <%=  render 'search' %>
      <% end %>
 <% else %>
     <% unless session[:my_previous_url].include? 'nodes/search'%>
           <%=  render 'search' %>
     <% else %>
-    <h1><%= "all" %></h1>
+    <b><%= "all" %></b>
     <% end %>
 <% end %>
-
-
 <hr/>
 
 <table role="grid" width="100%">

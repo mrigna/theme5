@@ -8,6 +8,10 @@ class NodesController < ApplicationController
     @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]
   end
 
+  def home
+     @title = "Home"
+  end
+
   def save_my_previous_url
     session[:my_previous_url] = request.path
   end
@@ -18,7 +22,7 @@ class NodesController < ApplicationController
   end
 
   def set_nodes
-     @dg = params[:dg]
+    @dg = params[:dg]
     if @dg == "all" or @dg.nil?
        @q = Node.all.ransack(params[:q])
     else

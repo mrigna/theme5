@@ -87,10 +87,10 @@ $column-gutter: rem-calc(30);
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-$body-font-family: url(GothamLight.woff);
+//$body-font-family: url(GothamLight.woff);
 // $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-// $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+$font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
 // $font-weight-normal: normal;
@@ -221,7 +221,7 @@ $body-font-family: url(GothamLight.woff);
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
+// h1-font-size: rem-calc(45);
 // $h2-font-size: rem-calc(37);
 // $h3-font-size: rem-calc(27);
 // $h4-font-size: rem-calc(23);

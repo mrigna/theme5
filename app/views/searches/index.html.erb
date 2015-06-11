@@ -1,14 +1,10 @@
-<h1>Advanced Search</h1>
-<div><%= link_to "Home", root_path %></div>
-<br />
-
-  
+<b>Advanced Search</b>
 	  <%= search_form_for @q, url: searches_path, method: :post do |f| %>
  	  <%= f.condition_fields do |c| %>
   	  <%= render "condition_fields", f: c%>
   	  <% end %>
   	  <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
-	  	  
+
   	  <div class="actions"><%= f.submit "Search", class: "button radius"  %>
   	  <%= link_to "Clear Search", request.path, class: "button secondary" %></div>
      <% end %>
@@ -23,12 +19,12 @@
       <th>Theme keywords</th>
       <th colspan="3"></th>
       <th>Node actions</th>
-      
+
      </tr>
-    </thead> 
-  
+    </thead>
+
   <tbody>
-    <% @search.each do |t| %>      
+    <% @search.each do |t| %>
         <tr>
           <% unless t.metadata.nil? or t.node.nil?%>
           <td><%= t.contentID %></td>
@@ -42,7 +38,7 @@
           <td><%= link_to "Go to node", root_path + "nodes/#{t.node.id}/themes/index" %></td>
           <% end %>
         </tr>
-		   
+
     <% end %>
   </tbody>
 </table>
