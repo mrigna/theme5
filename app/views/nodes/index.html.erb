@@ -1,18 +1,17 @@
-
-  <% if @title.present? %>
-  <h1><%= @title %></h1>
+<% if @title.present? %>
+<h1><%= @title.upcase %></h1>
      <% if @title == "Simple Search" %>
       <%=  render 'search' %>
      <% end %>
-  <% else %>
+<% else %>
     <% unless session[:my_previous_url].include? 'nodes/search'%>
           <%=  render 'search' %>
     <% else %>
     <h1><%= "all" %></h1>
     <% end %>
-  <% end %>
+<% end %>
 
-   
+
 <hr/>
 
 <table role="grid" width="100%">
@@ -24,12 +23,12 @@
       <th>DG</th>
       <th>Number objects</th>
       <th>Link to objects</th>
-      
+
      </tr>
     </thead>
-  
-    <tbody>    
-    <% @node_select.each do |node| %>                      
+
+    <tbody>
+    <% @node_select.each do |node| %>
           <tr>
             <td><%= node.nodeID %></td>
             <td><%= node.url_label %></td>
@@ -42,6 +41,6 @@
   </tbody>
 </table>
 <br /> <br/ >
-<% if @title == "Node listing" %>
+<% unless  @title == "Simple Search" %>
 <%= paginate @node_select, :params => {:controller => 'nodes', :action => 'index'} %>
-<% end %>
+<%  end %>

@@ -12,7 +12,7 @@
       <%= @theme.metadata.keywords %>
     </div>
     <div>Langue</div><br>
-    <% if @theme.metadata.language.nil? %>   
+    <% if @theme.metadata.language.nil? %>
     <%= select_tag "language",  options_for_select(["fr", "nl", "de", "en"]), :prompt => "-- Langage --", :id => "lang_select" %>
     <% end %>
     <%= @theme.metadata.language %>
@@ -25,7 +25,7 @@
 
 <div>Node</div><br>
   <% if @theme.node_id.nil? %>
-  <%= collection_select(:node, :id, Node.all, :id, :url_label, {:prompt => "-- Select a category --"}, {:id => 'node_select'}) %>
+<%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, {:id => 'node_select'}) %>
   <% else %>
   <%= @theme.node.url_label %>
   <% end %>
@@ -36,4 +36,6 @@ jQuery(parent).trigger('initialize:frame');
 
 <br>
 <hr /><br>
-<%= link_to 'Back', root_path %>
+<% unless @theme.node_id.nil? %>
+<%= link_to 'Back', node_themes_path(@theme.node_id) %>
+<% end %>
