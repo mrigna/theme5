@@ -1,13 +1,11 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
-  after_action :count, only: :create
+  after_action :generate, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
   after_action :save_my_previous_url, only: :index
 
   def index
-    @@count = Theme.last.id
-    @id = @@count
     @themes = Theme.node(params[:node_id]).order(id: :asc)
   end
 
@@ -19,24 +17,18 @@ class ThemesController < ApplicationController
   end
 
   def generate
-     @theme = Theme.new
-     @theme.id = @@count
+     @theme = Theme.create
      @theme.contentID  = "new_"+ DateTime.now.to_s(:number)
      @theme.save!
   end
 
   def create
-    @theme.metadata.title = params[:content][:metadata_title][:value].delete!("\n")
-    @theme.metadata.description = params[:content][:metadata_description][:value].delete!("\n")
-    @theme.metadata.keywords = params[:content][:metadata_keywords][:value].delete!("\n")
+    @theme.metadata.title = Sanitize.clean(params[:content][:metadata_title][:value].gsub!("&nbsp;", ""))
+    @theme.metadata.description = Sanitize.clean(params[:content][:metadata_description][:value].gsub!("&nbsp;", ""))
+    @theme.metadata.keywords = Sanitize.clean(params[:content][:metadata_keywords][:value].gsub!("&nbsp;", ""))
     @theme.html_content = params[:content][:theme_content][:value]
     @theme.save!
-   render text: ""
-  end
-
-  def count
-    @@count = Theme.last.id + 1
-    generate
+    render text: ""
   end
 
   def new_entry

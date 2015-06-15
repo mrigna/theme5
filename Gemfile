@@ -37,6 +37,8 @@ gem 'words_counted'
 
 gem 'boilerpipe'
 
+gem 'sanitize'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

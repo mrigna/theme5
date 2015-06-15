@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   mount Mercury::Engine => '/'
 
   resources :nodes, :only => :none do
-    collection { post :search, to: 'nodes#index' }
     collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
-    collection {get  'simple_search' => 'nodes#index', as: 'simple_search'}
 
     resources :themes, :only => :destroy, :shallow => :true do
           collection {get 'index' => 'themes#index'}
@@ -21,16 +19,17 @@ Rails.application.routes.draw do
     member {post 'update' => 'themes#mercury_update'}
   end
 
-   resources :searches,  :only => :none do
-     collection do
-       get 'index'
-       post 'index'
-     end
+  resources :searches,  :only => :none do
+    collection do
+      get 'simple'
+      post 'simple'
+      get 'complex'
+      post 'complex'
+    end
+      get 'show_original' => 'searches#show_original', as: 'original'
+   end
 
-    get 'show_original' => 'searches#show_original', as: 'original'
-  end
-
-  resources :metadata, :only => [:update]
+  resources :metadata, :only => [:none]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

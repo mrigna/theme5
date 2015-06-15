@@ -16,7 +16,7 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "FPS | #{@title}" %></title>
 
-  	
+
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= stylesheet_link_tag    "application",  media: 'all', 'data-turbolinks-track' => true %>
     <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
@@ -27,7 +27,7 @@
 
 <nav class="top-bar">
   <section class="top-bar-section">
-     <ul class="left"><%= link_to "Home", root_path %></ul>  
+     <ul class="left"><%= link_to "Home", root_path %></ul>
      <ul class="right">
       <li class="divider"></li>
       <li> <%= link_to "Show all nodes", dg_nodes_path("all") %></li>
@@ -44,16 +44,16 @@
       <li class="divider"></li>
       <li><%= link_to "COM/PO", dg_nodes_path("com-po") %> </li>
       <li class="divider"></li>
-      <li><%= link_to "Simple Search", simple_search_nodes_path, method: :get %> </li>
+      <li><%= link_to "Simple Search", simple_searches_path %> </li>
       <li class="divider"></li>
-      <li><%= link_to "Advanced Search", searches_path, method: :get %> </li>
+       <li><%= link_to "Advanced Search", complex_searches_path %> </li>
     </ul>
   </section>
 </nav>
 
 <div class="row">
   <div class="small-12 columns"><%= yield %></div>
-</div>    
+</div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

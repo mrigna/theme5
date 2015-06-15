@@ -1,11 +1,11 @@
 <div class="panel">
     <div class="field" >
-      <%= search_form_for @q, url: search_nodes_path, method: :post do |f| %>
+      <%= search_form_for @q, url: simple_searches_path, method: :post do |f| %>
     </div>
  <form>
     <div class="row">
       <div class="small-2 columns">
-      <%= f.label :url_label_cont, class: "right inline" %>
+        <%= f.label :url_label_cont, class: "right inline" %>
       </div>
       <div class="small-6 columns left"><%= f.search_field :url_label_cont %>
       </div>
@@ -33,11 +33,39 @@
         <div class="small-2 columns left"><%= f.select :dg_cont, @choice_dg %>
         </div>
       <div class="small-4 columns right">
-      <%= f.submit "Search", class: "button radius"%>
-      <%= link_to "Clear Search", simple_search_nodes_path, method: :get, class:"button secondary" %>
+        <%= f.submit "Search", class: "button radius"%>
+        <%= link_to "Clear Search", simple_searches_path, method: :get, class:"button secondary" %>
       </div>
     </div>
 
       <% end %>
   </form>
 </div>
+
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Node ID</th>
+      <th>Url Tag</th>
+      <th>Hidden</th>
+      <th>DG</th>
+      <th>Number objects</th>
+      <th>Link to objects</th>
+
+     </tr>
+    </thead>
+
+    <tbody>
+      <% @search.each do |node| %>
+          <tr>
+            <td><%= node.nodeID %></td>
+            <td><%= node.url_label %></td>
+            <td><%= node.hidden %></td>
+            <td><%= node.dg %></td>
+            <td><%= Theme.where(node_id: node.id).count %></td>
+            <td><%= link_to 'selection', node_themes_path(node.id) %></td>
+          </tr>
+      <% end %>
+  </tbody>
+</table>
+

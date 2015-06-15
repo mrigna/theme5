@@ -1,3 +1,13 @@
+<% unless @theme.html_content.nil? %> 
+<h1>New Theme (preview)</h1>
+<p><b>Title:</b> <%= @theme.metadata.title  %></p>
+<p><b>Description:</b>  <%= @theme.metadata.description %></p>
+<p><b>Keywords:</b> <%=  @theme.metadata.keywords %></p>
+<p><b>Language:</b> <%=  @theme.metadata.language %></p>
+<p><b>Node:</b> <%= @theme.node.nodeID %> | <%= @theme.node.url_label %>
+<p><%= link_to 'Show', show_theme_path(@theme) %> | <%= link_to 'Edit', "/editor"  + update_theme_path(@theme), id: "edit_link", data: {save_url: mercury_update_theme_path(@theme)}  %></p>
+
+<% else %>
 <h1>New Theme</h1>
 <ul class="accordion" data-accordion>
    <li class="accordion-navigation">
@@ -38,16 +48,16 @@
             <% else %>
             <%= @theme.node.url_label %>
             <% end %>
-
-
-
     </div>
   </li>
 </ul>
-
 <script>
 jQuery(parent).trigger('initialize:frame');
 </script>
+
+<% end %> 
+
+
 
 <% unless @theme.node_id.nil? %>
 <%= link_to 'Back', node_themes_path(@theme.node_id) %>

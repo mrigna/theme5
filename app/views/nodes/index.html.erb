@@ -1,14 +1,5 @@
 <% if @title.present? %>
 <b><%= @title.upcase %></b>
-     <% if @title == "Simple Search" %>
-     <%=  render 'search' %>
-     <% end %>
-<% else %>
-    <% unless session[:my_previous_url].include? 'nodes/search'%>
-          <%=  render 'search' %>
-    <% else %>
-    <b><%= "all" %></b>
-    <% end %>
 <% end %>
 <hr/>
 
@@ -39,6 +30,4 @@
   </tbody>
 </table>
 <br /> <br/ >
-<% unless  @title == "Simple Search" %>
 <%= paginate @node_select, :params => {:controller => 'nodes', :action => 'index'} %>
-<%  end %>

@@ -1,6 +1,6 @@
 <b>Listing themes </b>
 <hr />
-<p align="right"><%= link_to "Create new Theme",  redirect_theme_path(@id), class: "button alert" %></p>
+<p align="right"><%= link_to "Create new Theme",  redirect_theme_path(Theme.last.id), class: "button alert" %></p>
 <p id="notice"><font color='red'><%= notice %></font></p>
 <table role="grid" width="100%">
   <thead>
@@ -25,7 +25,7 @@
                 <td><%= theme.node.dg %></td>
                 <td><%= link_to 'Show', show_theme_path(theme) %></td>
                 <td><%= link_to 'Edit', "/editor"  + update_theme_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
-              <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %>
             </tr>
         <% end %>
@@ -42,8 +42,12 @@
 
 <br>
 <% if session[:my_previous_url].include? 'nodes/search'%>
-<%= link_to "Back", simple_search_nodes_path, method: :get, class: "button secondary"  %>
-<% elsif %>
-<%= link_to "Back", session[:my_previous_url], class: "button secondary"  %>
+<% link_to "Back", simple_search_nodes_path, method: :get, class: "button secondary"  %>
+<% elsif session[:my_previous_url].include? 'themes/index'%>
+<% link_to "Back", node_themes_path(@themes.first.node_id), method: :get, class: "button secondary"  %>
+<% else %>
+<%= link_to "Back", :back, class: "button secondary"  %>
 <% end %>
+
+
 

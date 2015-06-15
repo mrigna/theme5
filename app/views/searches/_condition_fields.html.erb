@@ -2,18 +2,19 @@
   <div class="panel">
     <%= f.attribute_fields do |a| %>
       <div class="row">
-        <div class="small-2 columns">
-          <%= a.attribute_select associations: [:theme, :metadata] %>
-        </div>
-       <% end %>
-        <div class="small-2 columns left">
-        <%= f.predicate_select only: %i(eq not_eq cont not_cont), compounds: false %>
-        </div>
-        <div class="small-5 columns left">
-        <%= f.value_fields do |v| %>
-        <%= v.text_field :value %>
-        <% end %>
-        </div>
-<%= link_to "Remove conditions", '#', class: ["remove_fields", "button tiny round"] %>
+          <div class="small-2 columns">
+            <%= a.attribute_select associations: [:theme, :metadata] %>
+          </div>
+      <% end %>
+          <div class="small-2 columns left">
+          <%= f.predicate_select only: %i(eq not_eq cont not_cont), compounds: false %>
+          </div>
+          <div class="small-5 columns left">
+          <%= f.value_fields do |v| %>
+          <%= v.text_field :value %>
+          <% end %>
+          </div>
+        <%= link_to "Remove conditions", '#', class: ["remove_fields", "button tiny round"] %>
+    </div>
   </div>
 </div>
