@@ -2,13 +2,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+
   rescue_from ActiveRecord::StatementInvalid, :with => :my_custom_error_handler
- 
+
   def search_params
   params[:q]
   end
- 
+
   def clear_search_index
       if params[:search_cancel]
         params.delete(:search_cancel)
@@ -19,15 +19,11 @@ class ApplicationController < ActionController::Base
           end
        end
   end
-  
-  
+
     protected
 
     def my_custom_error_handler(exception)
       render "error"
     end
-  
-  
-  
-  
+
 end
