@@ -1,15 +1,14 @@
 $(document).ready(function() {
-    
+
     $('#lang_select').change(function() {
        $.ajax({
         url: "#{new_entry_path}",
         data: {
           lang : $('#lang_select').val()
         },
-        dataType: "script"      
-      });
-     });  
-      
+        dataType: "script"
+     });
+
     $('#node_select').change(function() {
       $.ajax({
         url: "#{new_entry_path}",
@@ -18,6 +17,6 @@ $(document).ready(function() {
         },
         dataType: "script"
       });
-    });  
+    });
   });
 

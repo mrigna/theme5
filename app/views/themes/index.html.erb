@@ -41,12 +41,14 @@
 </div>
 
 <br>
-<% if session[:my_previous_url].include? 'nodes/search'%>
-<% link_to "Back", simple_search_nodes_path, method: :get, class: "button secondary"  %>
-<% elsif session[:my_previous_url].include? 'themes/index'%>
-<% link_to "Back", node_themes_path(@themes.first.node_id), method: :get, class: "button secondary"  %>
-<% else %>
-<%= link_to "Back", :back, class: "button secondary"  %>
+<% unless session[:my_previous_url].nil? %>
+  <% if session[:my_previous_url].include? 'nodes/search'%>
+  <% link_to "Back", simple_search_nodes_path, method: :get, class: "button secondary"  %>
+  <% elsif session[:my_previous_url].include? 'themes/index'%>
+  <% link_to "Back", node_themes_path(@themes.first.node_id), method: :get, class: "button secondary"  %>
+  <% else %>
+  <%= link_to "Back", :back, class: "button secondary"  %>
+  <% end %>
 <% end %>
 
 

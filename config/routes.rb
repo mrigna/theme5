@@ -19,15 +19,11 @@ Rails.application.routes.draw do
     member {post 'update' => 'themes#mercury_update'}
   end
 
-  resources :searches,  :only => :none do
-    collection do
-      get 'simple'
-      post 'simple'
-      get 'complex'
-      post 'complex'
-    end
+    resources :searches,  :only => :none do
+      collection {match 'simple' =>  "searches#simple", via: [:get, :post]}
+      collection {match 'complex' => "searches#complex", via: [:get, :post]}
       get 'show_original' => 'searches#show_original', as: 'original'
-   end
+    end
 
     get 'metadata/index' =>  'metadata#index'
     get 'metadata/:id/update'  =>  'metadata#update', as: 'metadata_update'

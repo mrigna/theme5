@@ -1,46 +1,4 @@
-<div class="panel">
-    <div class="field" >
-      <%= search_form_for @q, url: simple_searches_path, method: :post do |f| %>
-    </div>
- <form>
-    <div class="row">
-      <div class="small-2 columns">
-        <%= f.label :url_label_cont, class: "right inline" %>
-      </div>
-      <div class="small-6 columns left"><%= f.search_field :url_label_cont %>
-      </div>
-    </div>
-    <div class="row">
-       <div class="small-2 columns">
-       <%= f.label :nodeID_gteq, "nodes ID from", class: "right inline" %>
-       </div>
-       <div class="small-2 columns left">
-       <%= f.text_field :nodeID_gteq %>
-       </div>
-   </div>
-    <div class="row">
-      <div class="small-2 columns">
-          <%= f.label :nodeID_lteq, "to", class: "right inline" %>
-        </div>
-      <div class="small-2 columns left">
-          <%= f.text_field :nodeID_lteq %>
-        </div>
-     </div>
-    <div class="row">
-        <div class="small-2 columns" >
-          <%= f.label :dg_cont, class: "right inline" %>
-          </div>
-        <div class="small-2 columns left"><%= f.select :dg_cont, @choice_dg %>
-        </div>
-      <div class="small-4 columns right">
-        <%= f.submit "Search", class: "button radius"%>
-        <%= link_to "Clear Search", simple_searches_path, method: :get, class:"button secondary" %>
-      </div>
-    </div>
-
-      <% end %>
-  </form>
-</div>
+<%= render "simple_fields" %>
 
 <table role="grid" width="100%">
   <thead>
