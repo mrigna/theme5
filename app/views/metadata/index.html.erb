@@ -2,7 +2,6 @@
   <tbody>
 
      <% @themes.each do |theme| %>
-        <% if theme.id.nil? == false and theme.html_content.nil? == false %>
             <tr>
                 <td><%= theme.contentID %></td>
                 <td><%= theme.metadata.title %></td>
@@ -11,10 +10,8 @@
                 <td><%= theme.metadata.keywords %> </td>
                 <td><%= theme.node.nodeID %> </td>
                 <td><%= theme.node.url_label %></td>
-                <td><%= link_to 'Edit', metadata_update_path(theme)  %></td>
-
+                <td><%= link_to 'Edit', metadata_update_path_path(theme)  %></td>
             </tr>
-        <% end %>
     <% end %>
   </tbody>
 </table>

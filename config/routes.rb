@@ -25,10 +25,10 @@ Rails.application.routes.draw do
       get 'show_original' => 'searches#show_original', as: 'original'
     end
 
-    get 'metadata/index' =>  'metadata#index'
-    get 'metadata/:id/update'  =>  'metadata#update', as: 'metadata_update'
-    put 'metadata/:id/update'  =>  'metadata#update'
-    patch 'metadata/:id/update'  =>  'metadata#update'
+    resources :metadata,  :only => :none do    
+      member {get '/update' => 'metadata#edit'}
+      member {match '/update' => 'metadata#update', via: [:put, :patch]}
+    end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

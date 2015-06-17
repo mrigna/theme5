@@ -47,7 +47,7 @@ class ThemesController < ApplicationController
 
   def fetch_lang
       unless params[:lang].blank? == true
-       @theme.metadata.update(language: params[:lang])
+        @theme.metadata.update(language: params[:lang])
      end
   end
 
@@ -69,6 +69,7 @@ class ThemesController < ApplicationController
     def set_theme
       @theme = Theme.find(params[:id])
       @theme.metadata ||= Metadata.new
+      @meta = @theme.metadata
     end
 
     def theme_params
