@@ -12,7 +12,11 @@ class MetadataController < ThemesController
     @meta.update(description: params[:metadata][:description])
     @meta.update(keywords: params[:metadata][:keywords])
     @meta.update(language: params[:metadata][:language])
-    redirect_to node_themes_path(@theme.node_id)
+    unless  @theme.node.nil?
+      redirect_to node_themes_path(@theme.node_id)
+    else 
+      redirect_to root_path
+    end
   end
 
 

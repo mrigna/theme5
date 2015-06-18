@@ -38,9 +38,8 @@ class ThemesController < ApplicationController
   end
 
   def fetch_node
-      n = params[:node_id]
-      unless n.nil?
-        node = Node.find(n)
+     unless params[:node_id].blank? == true
+        node = Node.find(params[:node_id])
         @theme.update(node_id: node.id)
       end
   end
