@@ -17,6 +17,10 @@
 
   <div class="field"><%= f.select(:language,  ["fr", "nl", "de", "en"], :prompt => "-- Langage --") %></div>
 
+  <div><b>Node</b></div><br>
+  <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
+  <%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, {:id => 'node_select'}) %>
+
   <div class="actions"> 
     <%= f.submit %> <%= button_to "Back", :back %>
   </div>
