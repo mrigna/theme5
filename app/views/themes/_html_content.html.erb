@@ -6,7 +6,9 @@
     <%= link_to "Edit Metadata", update_metadatum_path(@themes[i]), class: "button tiny secondary" %>
  <br />
   <p>Content title: <%= @themes[i].metadata.title %></p>
+  <div class="panel">
   <div> <%= raw @themes[i].html_content %></div>
+  </div>
   </div>
 <% i += 1%>
 <% end %>

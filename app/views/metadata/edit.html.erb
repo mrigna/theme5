@@ -1,23 +1,24 @@
 <%= form_for(@meta, url: update_metadatum_path) do |f| %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <div class="label"><%= f.label :title %></div><br>
     <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <%= f.label :description %><br>
+    <div class="label"><%= f.label :description %></div><br>
     <%= f.text_field :description %>
   </div>
 
   <div class="field">
-    <%= f.label :keywords %><br>
+     <div class="label"><%= f.label :keywords %></div><br>
     <%= f.text_field :keywords %>
   </div>
 
-  <div class="field"><%= f.select(:language,  ["fr", "nl", "de", "en"], :prompt => "-- Langage --") %></div>
+  <div class="label"><%= f.label :language %></div><br>
+  <div class="field"><%= f.select(:language,  ["fr", "nl", "de", "en"], :prompt => "-- Choose Langage --") %></div>
 
-  <div><b>Node</b></div><br>
+  <div class="label"><%= f.label :node %></div><br>
   <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
   <%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, {:id => 'node_select'}) %>
 

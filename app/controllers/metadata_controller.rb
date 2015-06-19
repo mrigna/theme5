@@ -1,6 +1,7 @@
 class MetadataController < ThemesController
   before_action :set_theme, only: [:edit, :update]
   after_action :fetch_node, only: :edit
+  before_action :save_my_previous_url, only: :edit
 
   def index
   end
