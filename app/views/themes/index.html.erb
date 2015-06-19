@@ -40,10 +40,12 @@
      <%= render 'html_content' %>
 </div>
 
-<% unless session[:last_page].include? "update" %>
-<%= link_to "Back", session[:last_page], class: "button round tiny info"  %>
-<% else %>
-<%= link_to "Go Back", node_themes_path(@themes.first.node_id), method: :get, class: "button round tiny info"  %>
+<% unless session[:last_page].nil? %>
+  <% unless session[:last_page].include? "update" %>
+  <%= link_to "Back", session[:last_page], class: "button round tiny info"  %>
+  <% else %>
+  <%= link_to "Go Back", dg_nodes_path(Node.find(@themes.first.node_id).dg), method: :get, class: "button round tiny info"  %>
+  <% end %>
 <% end %>
 
 
