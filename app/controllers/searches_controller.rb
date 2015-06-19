@@ -1,9 +1,4 @@
 class SearchesController < ApplicationController
-  after_action :save_my_previous_url, only: [:simple, :advanced]
-
-  def save_my_previous_url
-    session[:my_previous_url] = request.path
-  end
 
   def simple
     @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]

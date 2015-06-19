@@ -1,16 +1,13 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
+  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
   after_action :generate, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
-  after_action :save_my_previous_url, only: :index
+
 
   def index
     @themes = Theme.node(params[:node_id]).order(id: :asc)
-  end
-
-  def save_my_previous_url
-    session[:my_previous_url] = request.path
+    session[:last_page] = request.env['HTTP_REFERER']
   end
 
   def show
@@ -35,6 +32,7 @@ class ThemesController < ApplicationController
   end
 
   def update
+    session[:last_page] = request.path
   end
 
   def fetch_node

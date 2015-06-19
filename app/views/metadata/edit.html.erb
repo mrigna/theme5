@@ -23,7 +23,7 @@
   <%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, {:id => 'node_select'}) %>
 
   <div class="actions"> 
-    <%= f.submit %> <%= button_to "Back", :back %>
+    <%= f.submit %> <%= button_to "Back", :back, class: "round tiny info" %>
   </div>
 
  

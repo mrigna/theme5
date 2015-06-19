@@ -1,6 +1,6 @@
 <% i = 0 %>
 <% @themes.each do %>
-<li class="tab-title" role="presentational" >
+<li class="tab-title <%= 'active' if i == 0 %>" role="presentational" >
   <a href="#panel<%=i+1%>">
   <%= @themes[i].metadata.language %>
   </a>

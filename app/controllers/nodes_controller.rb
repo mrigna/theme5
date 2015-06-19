@@ -1,6 +1,5 @@
 class NodesController < ApplicationController
   before_action :set_nodes, only: :index
-  after_action :save_my_previous_url, only: :index
 
   def index
     @nodes = Node.all
@@ -9,10 +8,6 @@ class NodesController < ApplicationController
 
   def home
      @title = "Home"
-  end
-
-  def save_my_previous_url
-    session[:my_previous_url] = request.path
   end
 
   private
