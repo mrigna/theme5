@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root :to =>'nodes#home'
+  root :to => "nodes#index"
+
+  devise_for :users, :controllers => { registrations: 'registrations' }, path_names: {sign_in: "login", sign_out: "logout"}
+  resources :users
+
   mount Mercury::Engine => '/'
 
   resources :nodes, :only => :none do
@@ -25,7 +29,7 @@ Rails.application.routes.draw do
       get 'show_original' => 'searches#show_original', as: 'original'
     end
 
-    resources :metadata,  :only => :none do    
+    resources :metadata,  :only => :none do
       member {get '/update' => 'metadata#edit'}
       member {match '/update' => 'metadata#update', via: [:put, :patch]}
     end

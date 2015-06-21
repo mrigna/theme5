@@ -24,7 +24,6 @@
   </head>
 
   <body>
-
 <nav class="top-bar">
   <section class="top-bar-section">
      <ul class="left"><%= link_to "Home", root_path %></ul>
@@ -47,10 +46,27 @@
        <li><%= link_to "Simple Search", simple_searches_path %> </li>
       <li class="divider"></li>
        <li><%= link_to "Advanced Search", complex_searches_path %> </li>
-    </ul>
+     </ul>
   </section>
 </nav>
-
+    <div align="right">
+    <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.username %></strong>.
+         <%= link_to 'Edit profile', edit_user_registration_path %> |
+           <%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+        <% else %>
+            <%= link_to "Sign up", new_user_registration_path  %> |
+            <%= link_to "Login", new_user_session_path  %>
+        <% end %>
+    </div>
+<div class="row">
+<% if notice %>
+  <div class="large-4 columns alert-box success radius"><%= notice %>
+<% end %>
+<% if alert %>
+  <div class="large-4 columns alert-box alert radius"><%= alert %>
+<% end %>
+</div>
 <div class="row">
   <div class="small-12 columns"><%= yield %></div>
 </div>
