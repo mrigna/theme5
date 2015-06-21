@@ -4,9 +4,20 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
+  
+  <div class="field">
+    <%= f.label :dg %>
+    <%= f.select :dg,  options_for_select(["all", "dg-gs", "dg4", "dg5", "shc", "medex", "com-po"]), :prompt => "-- Select DG --", :id => "dg_select" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :group %>
+    <%= f.text_field :group %>
+  </div>
+   
 
   <div class="field">
     <%= f.label :password %>

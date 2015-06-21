@@ -13,6 +13,7 @@ class Node < ActiveRecord::Base
   end
 
   scope :dg, -> (name_dg) { where(dg: name_dg) }
+  scope :user, -> (user_dg) { where(dg: user_dg) }
 
   store_accessor :label_translations, :fr, :nl, :de, :en
   store_accessor :references, :law, :form, :FAQ, :divers, :links

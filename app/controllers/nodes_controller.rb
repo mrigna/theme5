@@ -1,5 +1,5 @@
 class NodesController < ApplicationController
-  before_action :set_nodes, only: :index
+  before_action :set_scope, only: :index
 
   def index
     @nodes = Node.all
@@ -15,15 +15,13 @@ class NodesController < ApplicationController
     params.require(:node).permit(:nodeID)
   end
 
-  def set_nodes
-    @dg = params[:dg]
-    if @dg == "all" or @dg.nil?
-       @q = Node.all.ransack(params[:q])
-       @title = "All"
-    else
-    @q = Node.dg(@dg).ransack(params[:q])
-    @title = @dg
-    end
-
+  def set_scope
+    @user = current_user.dg
+    @title = "TO BE DEFINED"   
+      if @user == "all"
+      @q = Node.all.ransack(params[:q])
+      else
+      @q = Node.user(@user).ransack(params[:q])    
+      end
   end
 end

@@ -2,7 +2,7 @@ class Theme < ActiveRecord::Base
   belongs_to :node
   has_one :metadata
 
-  default_scope { order('"id" ASC') }
+  #default_scope { order('"id" ASC') }
 
   scope :node, -> (id) { where(node_id: id)}
 
