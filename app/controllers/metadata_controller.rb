@@ -15,7 +15,7 @@ class MetadataController < ThemesController
     @meta.update(language: params[:metadata][:language])
     unless  @theme.node.nil?
       redirect_to node_themes_path(@theme.node_id)
-    else 
+    else
       redirect_to root_path
     end
   end

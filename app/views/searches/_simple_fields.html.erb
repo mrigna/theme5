@@ -13,10 +13,17 @@
           <div class="small-2 columns"><%= f.label :nodeID_lteq, "to", class: "right inline" %></div>
           <div class="small-2 columns left"><%= f.text_field :nodeID_lteq %></div>
         </div>
-        <div class="row">
+      <% if current_user.dg == "all" %>
+      <div class="row">
           <div class="small-2 columns" ><%= f.label :dg_cont, class: "right inline" %></div>
           <div class="small-2 columns left"><%= f.select :dg_cont, @choice_dg %></div>
        </div>
+      <% else %>
+      <div class="row">
+          <div class="small-2 columns" ><%= f.label :group, class: "right inline" %></div>
+
+       </div>
+      <% end %>
       <div class="row">
         <div class="small-4 columns right"><%= f.submit "Search", class: "button radius"%>
         <%= link_to "Clear Search", simple_searches_path, class:"button secondary" %></div>

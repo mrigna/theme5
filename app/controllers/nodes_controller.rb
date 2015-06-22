@@ -4,6 +4,7 @@ class NodesController < ApplicationController
   def index
     @nodes = Node.all
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20)
+    @title = @dg
   end
 
   def home
@@ -17,11 +18,15 @@ class NodesController < ApplicationController
 
   def set_scope
     @user = current_user.dg
-    @title = "TO BE DEFINED"   
-      if @user == "all"
-      @q = Node.all.ransack(params[:q])
+     if @user == "all"
+        @dg = params[:dg]
+        unless @dg == "all"
+        @q = Node.dg(@dg).ransack(params[:q])
+        else
+        @q = Node.unscoped.load.ransack(params[:q])
+        end
       else
-      @q = Node.user(@user).ransack(params[:q])    
+      @q = Node.user(@user).ransack(params[:q])
       end
   end
 end

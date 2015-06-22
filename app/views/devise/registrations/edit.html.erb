@@ -11,13 +11,11 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  
+
   <div class="field">
-    <%= f.label :dg %>
-	<i>(Current DG: <%= current_user.dg %>)</i>
-    <%= f.select :dg,  options_for_select(["all", "dg-gs", "dg4", "dg5", "shc", "medex", "com-po"]), :prompt => "-- Select DG --", :id => "dg_select" %>
-  </div>
-  
+    <%= f.label :dg %><%= current_user.dg %>
+ </div>
+
   <div class="field">
       <%= f.label :group %>
 	  <i>(Current Group: <%= current_user.group %>)</i> 

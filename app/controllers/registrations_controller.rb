@@ -1,5 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def set_groups
+  end
+
   private
 
   def sign_up_params

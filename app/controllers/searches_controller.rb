@@ -1,6 +1,5 @@
 class SearchesController < ApplicationController
   before_action :set_scope
-  
 
   def simple
     @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]
@@ -19,24 +18,24 @@ class SearchesController < ApplicationController
   def show_original
     render 'original'
   end
-  
+
   private
   def set_scope
     @user = current_user.dg
     case @user
-    when "all"    
+    when "all"
       if params[:action] == "simple"
-        @q = Node.all.ransack(params[:q])        
+        @q = Node.all.ransack(params[:q])
       else
         @q = Theme.joins(:node).ransack(params[:q])
-      end    
-    else  
-      if params[:action] == "simple"    
-        @q = Node.user(@user).ransack(params[:q])  
+      end
+    else
+      if params[:action] == "simple"
+        @q = Node.user(@user).ransack(params[:q])
       else
        @q = Theme.joins(:node).where('nodes.dg' => @user).ransack(params[:q])
       end
-    end    
+    end
   end
-  
+
 end
