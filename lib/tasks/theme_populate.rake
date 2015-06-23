@@ -21,7 +21,7 @@ namespace :db do
         end
 
 
-        sleep(10)
+        sleep(3)
       end
      puts 'All Themes done'
     end
