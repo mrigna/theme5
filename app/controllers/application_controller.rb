@@ -20,6 +20,14 @@ class ApplicationController < ActionController::Base
           end
        end
   end
+  
+  def after_sign_in_path_for(resource)
+    if current_user.dg.nil?
+      user_path(current_user)
+    else
+    "/nodes/#{current_user.dg}/index"
+    end
+  end
 
     protected
 
