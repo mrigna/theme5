@@ -1,13 +1,17 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update]
+  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :checks]
   after_action :generate, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
 
-
   def index
     @themes = Theme.node(params[:node_id]).order(id: :asc)
     session[:last_page] = request.env['HTTP_REFERER']
+  end
+
+  def checks
+    @theme.update_column(:check_com, true)
+    render text: ""
   end
 
   def show

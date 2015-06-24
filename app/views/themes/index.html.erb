@@ -14,10 +14,13 @@
       <th>DG</th>
       <% if current_user.dg == "all" %>
       <th colspan="3"></th>
+      <th>Word count</th>
+      <th>Check Com</th>
       <% else %>
       <th colspan="2"></th>
-      <% end %>
       <th>Word count</th>
+      <% end %>
+      <th>Check DG</th>
      </tr>
   </thead>
 
@@ -33,9 +36,14 @@
                 <td><%= link_to 'Show', show_theme_path(theme) %></td>
                 <td><%= link_to 'Edit', "/editor"  + update_theme_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
                 <% if current_user.dg == "all" %>
-                <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>  
-              <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %>
+                      <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
+                      <%= form_tag checks_theme_path(theme), method: :patch, remote: true do %>
+                      <td><%= check_box_tag 'check_box', true, false, :onchange =>'$(this.form).submit()', :alert => "Checked by Com" %>
+                      <% end %>
+              <% else %><td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
+              <% end %>
+                <td><%= theme.check_dg %></td>
             </tr>
         <% end %>
     <% end %>

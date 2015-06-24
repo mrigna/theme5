@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621162034) do
+ActiveRecord::Schema.define(version: 20150624081523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20150621162034) do
     t.boolean  "is_original"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "check_dg"
+    t.boolean  "check_com"
   end
 
   add_index "themes", ["node_id"], name: "index_themes_on_node_id", using: :btree

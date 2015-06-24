@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root :to => "nodes#index"
 
   devise_for :users, :controllers => { registrations: 'registrations' }, path_names: {sign_in: "login", sign_out: "logout"}
-  resources :users
+  resources :users do
+    member {patch 'edit' => 'users#update'}
+  end
 
   mount Mercury::Engine => '/'
 
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :themes, :only => :destroy, :shallow => :true do
           collection {get 'index' => 'themes#index'}
+          member {patch 'checks' => 'themes#checks'}
           end
   end
   resources :themes,  :only => :none do

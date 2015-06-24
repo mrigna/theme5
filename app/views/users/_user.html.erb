@@ -3,4 +3,6 @@
 <td><%= link_to user.dg, user %></td>
 <td><%= link_to user.group, user %></td>
 <td><%= user.last_sign_in_ip %></td>
+<td><%= link_to "Edit",  edit_user_path(user) %></td>
+<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </th>

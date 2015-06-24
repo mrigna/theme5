@@ -1,14 +1,9 @@
 class NodesController < ApplicationController
-  before_action :set_scope, only: :index
+  before_action :set_scope, only: [:home, :index]
 
   def index
-    @nodes = Node.all
-    @node_select =  @q.result(distinct: true).page(params[:page]).per(20)
+    @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
-  end
-
-  def home
-     @title = "Home"
   end
 
   private
@@ -29,4 +24,5 @@ class NodesController < ApplicationController
       @q = Node.user(@user).ransack(params[:q])
       end
   end
+
 end

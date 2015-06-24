@@ -1,0 +1,22 @@
+<h2>Edit User</h2>
+<%= form_for(@user, url: edit_user_path) do |f| %>
+
+  id:<%= @user.id %> user:<%= @user.username %>
+
+  <div class="field">
+  <%= f.label :dg %>
+  <i>Current: <%= @user.dg %></i>
+	<%= f.select :dg,  options_for_select(["all", "dg-gs", "dg4", "dg5", "shc", "medex", "com-po"]) %>
+  </div>
+
+  <div class="field">
+	<%= f.label :group %>
+	<%= f.text_field :group %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: "button round tiny secondary" %> <%= link_to "Back", :back, class: "button round tiny info" %>
+  </div>
+
+<% end %>
+
