@@ -38,12 +38,15 @@
                 <% if current_user.dg == "all" %>
                       <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
-                      <%= form_tag checks_theme_path(theme), method: :patch, remote: true do %>
-                      <td><%= check_box_tag 'check_box', true, false, :onchange =>'$(this.form).submit()', :alert => "Checked by Com" %>
+                      <%= form_tag check_com_theme_path(theme), method: :patch, remote: true do |f| %>
+                      <td><%= check_box_tag "check_com", true, false, :checked => theme.check_com, :onchange => "$(this.form).submit()" %></td>
                       <% end %>
-              <% else %><td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
+               <% else %>
+                      <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
               <% end %>
-                <td><%= theme.check_dg %></td>
+                      <%= form_tag check_dg_theme_path(theme), method: :patch, remote: true do |f| %>
+                      <td><%= check_box_tag "check_dg", true, false, :checked => theme.check_dg, :onchange => "$(this.form).submit()" %></td>
+                      <% end %>
             </tr>
         <% end %>
     <% end %>

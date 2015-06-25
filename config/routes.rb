@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
     resources :themes, :only => :destroy, :shallow => :true do
           collection {get 'index' => 'themes#index'}
-          member {patch 'checks' => 'themes#checks'}
+          member {match 'check_com' => 'themes#check1', via: [:patch]}
+          member {match 'check_dg' => 'themes#check2', via: [:patch]}
           end
   end
   resources :themes,  :only => :none do

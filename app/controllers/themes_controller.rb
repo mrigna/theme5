@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :checks]
+  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :check1, :check2]
   after_action :generate, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
@@ -9,8 +9,21 @@ class ThemesController < ApplicationController
     session[:last_page] = request.env['HTTP_REFERER']
   end
 
-  def checks
-    @theme.update_column(:check_com, true)
+  def check1
+    if  params[:check_com].present?
+        @theme.update_column(:check_com, true)
+    else
+      @theme.update_column(:check_com, false)
+    end
+    render text: ""
+  end
+
+  def check2
+    if  params[:check_dg].present?
+      @theme.update_column(:check_dg, true)
+    else
+      @theme.update_column(:check_dg, false)
+    end
     render text: ""
   end
 
@@ -74,7 +87,7 @@ class ThemesController < ApplicationController
     end
 
     def theme_params
-      params.require(:theme).permit(:node_id, :html_content, :node_attributes, :metadata_attributes)
+      params.require(:theme).permit(:node_id, :html_content, :check_com, :check_dg, :node_attributes, :metadata_attributes)
       params.require(:node).permit(:id)
     end
 
