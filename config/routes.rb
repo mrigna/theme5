@@ -10,12 +10,11 @@ Rails.application.routes.draw do
 
   resources :nodes, :only => :none do
     collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
+    member {match  :update, via: [:get, :patch]}
 
     resources :themes, :only => :destroy, :shallow => :true do
-          collection {get 'index' => 'themes#index'}
-          member {match 'check_com' => 'themes#check1', via: [:patch]}
-          member {match 'check_dg' => 'themes#check2', via: [:patch]}
-          end
+      collection {get 'index' => 'themes#index'}
+      end
   end
   resources :themes,  :only => :none do
     member {post :mercury_update}
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
     member {get 'update' => 'themes#edit', as: 'update'}
     member {get 'show' => 'themes#show', as: 'show'}
     member {post 'update' => 'themes#mercury_update'}
+    member {match 'check_com' => 'themes#check', via: [:get, :patch]}
+    member {match 'check_dg' => 'themes#check', via: [:get, :patch]}
   end
 
     resources :searches,  :only => :none do

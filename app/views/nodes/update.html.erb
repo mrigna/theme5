@@ -1,0 +1,3 @@
+<%= form_for :node, method: :patch do %>
+<%= collection_select(:node, :id, Node.where.not(:group => nil), :id, :group) %>
+<% end %>

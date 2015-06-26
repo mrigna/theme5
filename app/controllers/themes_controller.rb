@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :check1, :check2]
+  before_action :set_theme, only: [:show, :edit, :destroy, :new_entry, :create, :update, :mercury_update, :check]
   after_action :generate, only: :create
   after_action :fetch_node, only: :new_entry
   after_action :fetch_lang, only: :new_entry
@@ -7,21 +7,16 @@ class ThemesController < ApplicationController
   def index
     @themes = Theme.node(params[:node_id]).order(id: :asc)
     session[:last_page] = request.env['HTTP_REFERER']
-  end
+   end
 
-  def check1
-    if  params[:check_com].present?
-        @theme.update_column(:check_com, true)
-    else
+  def check
+    if  params[:theme][:check_com] == "1"
+      @theme.update_column(:check_com, true)
+    elsif params[:theme][:check_com] == "0"
       @theme.update_column(:check_com, false)
-    end
-    render text: ""
-  end
-
-  def check2
-    if  params[:check_dg].present?
+    elsif  params[:theme][:check_dg] == "1"
       @theme.update_column(:check_dg, true)
-    else
+    elsif params[:theme][:check_dg] == "0"
       @theme.update_column(:check_dg, false)
     end
     render text: ""

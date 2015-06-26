@@ -20,7 +20,7 @@ class Node < ActiveRecord::Base
 
   private
     def self.ransackable_attributes(auth_object = nil)
-       ["nodeID", "url_label", "dg"]
+       ["nodeID", "url_label", "dg", "group"]
     end
 
 end
