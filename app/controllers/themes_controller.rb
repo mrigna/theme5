@@ -32,11 +32,8 @@ class ThemesController < ApplicationController
   end
 
   def create
-    @theme.metadata.title = Sanitize.clean(params[:content][:metadata_title][:value].gsub!("&nbsp;", ""))
-    @theme.metadata.description = Sanitize.clean(params[:content][:metadata_description][:value].gsub!("&nbsp;", ""))
-    @theme.metadata.keywords = Sanitize.clean(params[:content][:metadata_keywords][:value].gsub!("&nbsp;", ""))
-    @theme.html_content = params[:content][:theme_content][:value]
-    @theme.save!
+    ### update metadata ####
+    @theme.update(html_content: params[:content][:theme_content][:value])
     render text: ""
   end
 

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
     resources :metadata,  :only => :none do
       member {get '/update' => 'metadata#edit'}
-      member {match '/update' => 'metadata#update', via: [:put, :patch]}
+      member {match '/update' => 'metadata#update', via: :patch}
     end
 
   # The priority is based upon order of creation: first created -> highest priority.

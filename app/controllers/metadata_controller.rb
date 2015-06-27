@@ -9,17 +9,19 @@ class MetadataController < ThemesController
   end
 
   def update
-    @meta.update(title: params[:metadata][:title])
-    @meta.update(description: params[:metadata][:description])
-    @meta.update(keywords: params[:metadata][:keywords])
-    @meta.update(language: params[:metadata][:language])
-    unless  @theme.node.nil?
-      redirect_to node_themes_path(@theme.node_id)
-    else
-      redirect_to root_path
-    end
+    @meta.title = params[:metadata][:title]
+    @meta.description = params[:metadata][:description]
+    @meta.keywords = params[:metadata][:keywords]
+    @meta.language = params[:metadata][:language]
+    @theme.update(node_id: params[:node][:id]) unless params[:node][:id].blank?
+    @meta.update(meta_params)
+    render :js => "alert('Metadata updated!')"
+    
   end
 
-
+  private
+    def meta_params
+      params.require(:metadata).permit!
+    end
 
 end

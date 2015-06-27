@@ -13,41 +13,14 @@
    <li class="accordion-navigation">
      <a href="#panel1a">Content</a>
      <div id="panel1a" class="content active">
-      <div id="theme_content" data-mercury="full">
+	  <div id="theme_content" data-mercury="full">
       <%= raw @theme.html_content %>
       </div>
   </li>
   <li class="accordion-navigation">
     <a href="#panel2a">Metadata</a> 
     <div id="panel2a" class="content">
-
-              <b>Title</b><br>
-              <div id="metadata_title" data-mercury="full">
-                <%= @theme.metadata.title  %>
-              </div>
-
-              <b>Description</b><br>
-              <div id="metadata_description" data-mercury="full">
-                <%= @theme.metadata.description %>
-              </div>
-
-              <b>Keywords</b><br>
-              <div id="metadata_keywords" data-mercury="full">
-                <%= @theme.metadata.keywords %>
-              </div>
-
-              <div><b>Language</b></div><br>
-              <% if @theme.metadata.language.nil? %>
-              <%= select_tag "language",  options_for_select(["fr", "nl", "de", "en"]), :prompt => "-- Langage --", :id => "lang_select" %>
-              <% end %>
-              <%= @theme.metadata.language %>
-
-             <div><b>Node</b></div><br>
-            <% if @theme.node_id.nil? %>
-            <%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, {:id => 'node_select'}) %>
-            <% else %>
-            <%= @theme.node.url_label %>
-            <% end %>
+        <%= render :template => 'metadata/edit' %>
     </div>
   </li>
 </ul>
