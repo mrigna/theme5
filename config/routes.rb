@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   resources :nodes, :only => :none do
     collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
-    member {match  :update, via: [:get, :patch]}
+    member {get 'update' => 'nodes#edit'}
+    member {post 'update' => 'nodes#update'}
 
     resources :themes, :only => :destroy, :shallow => :true do
       collection {get 'index' => 'themes#index'}

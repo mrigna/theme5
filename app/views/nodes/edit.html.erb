@@ -1,0 +1,10 @@
+<h2>Select a group for this node</h2>
+<%= form_for :node do |node| %>
+	
+	<%= collection_select(node, :id, Node.where.not(:group => nil), :id, :group, {:selected => @node.group}, :include_blank => true) %>
+	
+  <div class="actions">
+     <%= node.submit class: "button round tiny secondary" %><%= link_to "Back", :back, class: "button round tiny info" %>
+  </div>
+	
+<% end %>

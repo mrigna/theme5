@@ -6,7 +6,7 @@
   <div class="field">
   <%= f.label :dg %>
   <i>Current: <%= @user.dg %></i>
-	<%= f.select :dg,  options_for_select(["all", "dg-gs", "dg4", "dg5", "shc", "medex", "com-po"]) %>
+	<%= f.select :dg,  options_for_select(["all", "dg-gs", "dg4", "dg5", "shc", "medex", "com-po"]), :include_blank => true %>
   </div>
 
   <div class="field">

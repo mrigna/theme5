@@ -1,16 +1,31 @@
 class NodesController < ApplicationController
-  before_action :set_scope, only: [:home, :index]
-
+  before_action :set_scope, only: [:home, :index, :edit]
+  before_action :set_node, only: [:edit, :update]
+  
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
   end
-
-  private
-  def node_params
-    params.require(:node).permit(:nodeID)
+  
+  def edit
+    
+  end
+  
+  def update
+    @node.update(group: params[:node][:group])
+    render text: ""
   end
 
+  private
+  
+  def node_params
+    params.require(:node).permit(:group)
+  end
+  
+  def set_node
+  @node = Node.find(params[:id])
+  end
+  
   def set_scope
     @user = current_user.dg
      if @user == "all"

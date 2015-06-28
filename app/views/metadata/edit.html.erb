@@ -1,5 +1,6 @@
 <%= form_for(@meta, url: update_metadatum_path, method: :patch, remote: true) do |f| %>
 
+   <% if params[:action] == "edit" %>
   <div class="field">
     <div class="label"><%= f.label :title %></div><br>
     <%= f.text_field :title , :id => 'title'%>
@@ -23,11 +24,38 @@
   <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
   <% end %>
   <td><%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, :id => 'node_select' )%></td>
-   
-  
- <% if params[:action] == "edit" %>
+
   <div class="actions">
    <%= f.submit class: "button round tiny secondary" %><%= link_to "Back", :back, class: "button round tiny info" %>
   </div>
+  
+  <% else %>
+  
+  <div class="field">
+    <div class="label"><%= f.label :title %></div><br>
+    <%= f.text_field :title , :id => 'title', :onchange => "$(this.form).submit()"%>
+  </div>
+
+  <div class="field">
+    <div class="label"><%= f.label :description %></div><br>
+    <%= f.text_field :description, :id => 'description', :onchange => "$(this.form).submit()" %>
+  </div>
+
+  <div class="field">
+     <div class="label"><%= f.label :keywords %></div><br>
+    <%= f.text_field :keywords, :id => 'keywords', :onchange => "$(this.form).submit()" %>
+  </div>
+
+  <div class="label"><%= f.label :language %></div><br>
+  <div class="field"><%= f.select(:language,  ["fr", "nl", "de", "en"], :id => 'lang_select', :prompt => "-- Choose Langage --", :onchange => "$(this.form).submit()") %></div>
+
+  <div class="label"><%= f.label :node %></div><br>
+  <% unless @theme.node_id.nil?%>
+  <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
+  <% end %>
+  <td><%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, :id => 'node_select', :onchange => "$(this.form).submit()") %></td>
+  
+  
+  
  <% end %>
 <% end %>

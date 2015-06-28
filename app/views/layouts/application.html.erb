@@ -18,44 +18,45 @@
 
 
      <%= javascript_include_tag "vendor/custom.modernizr" %>
-     <%= stylesheet_link_tag    "application",  media: 'all', 'data-turbolinks-track' => true %> 
-   	 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+     <%= stylesheet_link_tag    "application",  media: 'all', 'data-turbolinks-track' => false %> 
+   	 <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
 	 <%= csrf_meta_tags %>
   </head>
 
-  <body>
-<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
-      <section class="top-bar-section">
-      <% if user_signed_in? %>
-        <ul class="left"> <%= link_to image_tag("logo.png", size: "45x45"), "/nodes/#{current_user.dg}/index" %></ul>
+  <body>  
+ 
+	<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
+	      <section class="top-bar-section">
+	      <% if user_signed_in? %>
+	        <ul class="left"> <%= link_to image_tag("logo.png", size: "45x45"), "/nodes/#{current_user.dg}/index" %></ul>
 
-         <ul class="right">
-          <li class="divider"></li>
-           <% unless current_user.dg.nil? %>
-              <% if current_user.dg == "all" %>
-                 <li> <%= link_to "Show all nodes", dg_nodes_path("all") %></li>
-                 <% ["dg-gs", "dg4", "dg5", "medex", "shc", "com-po"].each do |t| %>
-                 <li class="divider"></li>
-                 <li><%= link_to "All #{t} nodes", dg_nodes_path(t) %></li>
-                 <% end %>
-              <% else %>
-                <li class="divider"></li>
-                <li><%= link_to "All #{current_user.dg} nodes", dg_nodes_path(current_user.dg) %></li>
-              <% end %>
-                 <li class="has-dropdown">
-                  <a href="#">Search</a>
-                  <ul class="dropdown">
-                    <li><%= link_to "Simple Search", simple_searches_path %> </li>
-                    <li><%= link_to "Advanced Search", complex_searches_path %> </li>
-                  </ul>
-                </li>
-            <% else %>
+	         <ul class="right">
+	          <li class="divider"></li>
+	           <% unless current_user.dg.nil? %>
+	              <% if current_user.dg == "all" %>
+	                 <li> <%= link_to "Show all nodes", dg_nodes_path("all") %></li>
+	                 <% ["dg-gs", "dg4", "dg5", "medex", "shc", "com-po"].each do |t| %>
+	                 <li class="divider"></li>
+	                 <li><%= link_to "All #{t} nodes", dg_nodes_path(t) %></li>
+	                 <% end %>
+	              <% else %>
+	                <li class="divider"></li>
+	                <li><%= link_to "All #{current_user.dg} nodes", dg_nodes_path(current_user.dg) %></li>
+	              <% end %>
+	                 <li class="has-dropdown">
+	                  <a href="#">Search</a>
+	                  <ul class="dropdown">
+	                    <li><%= link_to "Simple Search", simple_searches_path %> </li>
+	                    <li><%= link_to "Advanced Search", complex_searches_path %> </li>
+	                  </ul>
+	                </li>
+	            <% else %>
 
-            <% end %>
-           <% end %>
-         </ul>
-      </section>
-</nav>
+	            <% end %>
+	           <% end %>
+	         </ul>
+	      </section>
+	</nav>
     <div align="right">
     <% if user_signed_in? %>
           Logged in as <strong><%= current_user.username %></strong>.

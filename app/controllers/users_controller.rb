@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(dg: params[:user][:dg])
-    @user.update(group: params[:user][:group])
+    @user.update(dg: params[:user][:dg]) unless params[:user][:dg].blank?
+    @user.update(group: params[:user][:group]) unless params[:user][:group].blank?
     redirect_to user_path
   end
 

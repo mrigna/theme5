@@ -7,7 +7,7 @@ class MetadataController < ThemesController
 
   def edit
   end
-
+  
   def update
     @meta.title = params[:metadata][:title]
     @meta.description = params[:metadata][:description]
@@ -16,7 +16,6 @@ class MetadataController < ThemesController
     @theme.update(node_id: params[:node][:id]) unless params[:node][:id].blank?
     @meta.update(meta_params)
     render :js => "alert('Metadata updated!')"
-    
   end
 
   private

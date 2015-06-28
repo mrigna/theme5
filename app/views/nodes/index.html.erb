@@ -24,8 +24,12 @@
             <td><%= node.url_label %></td>
             <td><%= node.hidden %></td>
             <td><%= node.dg %></td>
-            <td><%= link_to node.group, node_path(node) unless node.group.nil? %></td>
-            <td><%= Theme.where(node_id: node.id).count %></td>
+			<% unless node.group.nil? %>
+            <td><%= link_to node.group, node_path(node) %></td>
+            <% else %>
+			<td><%= link_to "-", node_path(node) %></td>
+			<% end %>
+			<td><%= Theme.where(node_id: node.id).count %></td>
             <td><%= link_to 'selection', node_themes_path(node.id) %></td>
           </tr>
     <% end %>

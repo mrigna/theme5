@@ -21,7 +21,7 @@
      <% end %>
       <div class="row">
           <div class="small-2 columns" ><%= f.label :group, class: "right inline" %></div>
-        <div class="small-2 columns left"><%= f.select :group_cont, @groups %></div>
+        <div class="small-2 columns left"><%= f.select :group_cont, @groups, :include_blank => true %></div>
        </div>
       
       <div class="row">
