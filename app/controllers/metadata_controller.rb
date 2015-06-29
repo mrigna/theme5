@@ -7,7 +7,7 @@ class MetadataController < ThemesController
 
   def edit
   end
-  
+
   def update
     @meta.title = params[:metadata][:title]
     @meta.description = params[:metadata][:description]

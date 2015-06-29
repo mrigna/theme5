@@ -1,8 +1,8 @@
 <% if current_user.dg == "all" %>
-  <%= form_for(theme, url: check_com_theme_path(theme), method: :patch, remote: true) do |t| %>
+  <%= form_for(theme, url: check_com_theme_path(theme), remote: true) do |t| %>
   <td><%= t.check_box :check_com, :checked => theme.check_com, :onchange => "$(this.form).submit()" %></td>
   <% end %>
 <% end %>
-<%= form_for(theme, url: check_dg_theme_path(theme), method: :patch, remote: true) do |t| %>
+<%= form_for(theme, url: check_dg_theme_path(theme), remote: true) do |t| %>
 <td><%= t.check_box :check_dg, :checked => theme.check_dg, :onchange => "$(this.form).submit()" %></td>
 <% end %>
