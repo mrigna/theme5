@@ -1,9 +1,11 @@
 <% i = 0 %>
 <% @themes.each do %>
-<li class="tab-title <%= 'active' if i == 0 %>" role="presentational" >
-  <a href="#panel<%=i+1%>">
-  <%= @themes[i].metadata.language %>
-  </a>
-</li>
+  <% unless @themes[i].more_about == true %>
+  <li class="tab-title <%= 'active' if i == 0 %>" role="presentational">
+    <a href="#panel<%=i+1%>">
+      <%= @themes[i].metadata.language %>
+    </a>
+  </li>
+  <% end %>
 <% i += 1 %>
 <% end %>

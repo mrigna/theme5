@@ -11,6 +11,7 @@
       <th>ID</th>
       <th>Titre</th>
       <th>Language</th>
+      <th>More about</th>
       <th>DG</th>
       <th colspan="3"></th>
       <th>Word count</th>
@@ -27,6 +28,7 @@
                 <td><%= theme.contentID %></td>
                 <td><%= theme.metadata.title %></td>
                 <td><%= theme.metadata.language %></td>
+                <td><%= "Yes" if theme.more_about == true %> 
                 <td><%= theme.node.dg %></td>
                 <td><%= link_to 'Show', show_theme_path(theme) %></td>
                 <td><%= link_to 'Edit', "/editor"  + update_theme_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>

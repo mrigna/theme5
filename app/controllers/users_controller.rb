@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def check_user
-    unless current_user.username == "michele"
+    unless current_user.username == "admin"
         redirect_to root_path, :alert => "Access denied."
     end
   end

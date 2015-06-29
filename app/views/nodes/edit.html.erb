@@ -1,4 +1,7 @@
+<i>Select a new group</i>
+
 <%= form_for @node, url: {action: "update"} do |node| %>
-<%= node.collection_select(:group, Node.user(@user).where.not(:group => nil), :group, :group, {:selected => @node.group}, :include_blank => true) %>
-<%= submit_tag("update") %>
+<%= node.collection_select(:group, @scope, :group, :group, :include_blank => true) %>
+<%= submit_tag "Update group", class: "button round tiny secondary" %>
 <% end %>
+<%= button_to "Remove group", {:action => 'remove_group'}, class: "button round tiny info"%>
