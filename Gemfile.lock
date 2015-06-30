@@ -116,6 +116,8 @@ GEM
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     populator (1.0.0)
+    puma (2.11.3)
+      rack (>= 1.1, < 2.0)
     rack (1.6.4)
     rack-attack (4.3.0)
       rack
@@ -209,6 +211,7 @@ DEPENDENCIES
   mercury-rails!
   pg
   populator
+  puma
   rack-attack
   rails (= 4.2.0)
   rails_12factor
