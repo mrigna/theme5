@@ -1,5 +1,5 @@
 class CreateTablesFromScratch < ActiveRecord::Migration
-  execute 'DROP EXTENSION hstore'
+  #execute 'DROP EXTENSION hstore'
   execute 'CREATE EXTENSION hstore'
 
     def change
