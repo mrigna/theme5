@@ -3,4 +3,4 @@
 
 <!-- Remove "Link to home - <A href=\"/eportal/index.htm\">Home</A>" with gsub -->
 
-<%= render html: Boilerpipe.extract("portal/#{params[:search_id]}", {:output => :htmlFragment}).html_safe %>
+<%= render html: Boilerpipe.extract("http://www.health.belgium.be/eportal/#{params[:search_id]}", {:output => :htmlFragment}).html_safe %>
