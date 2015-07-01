@@ -1,4 +1,9 @@
-Rack::Attack.whitelist('allow from fps') do |req|
-    # Requests are allowed if the return value is truthy
-  '193.191.211.19' == req.ip
+module Rack
+  class Attack
+    class Request < ::Rack::Request
+      def fps?
+      '193.191.211.19' == env['HTTP_X_REQUEST_ID']
+      end
+  end
 end
+Rack::Attack.whitelist("allow from fps") {|req| req.fps? }
