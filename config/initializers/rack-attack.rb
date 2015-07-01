@@ -1,6 +1,6 @@
 class Rack::Attack::Request < ::Rack::Request
       def fps?
-      '193.191.211.19' == env['HTTP_X_REQUEST_ID']
+        '193.191.211.19' == env['HTTP_X_FORWARDED_FOR']
       end
 end
 
