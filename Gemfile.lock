@@ -87,7 +87,6 @@ GEM
       i18n (~> 0.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    heroku-request-id (0.0.9)
     i18n (0.7.0)
     jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
@@ -108,6 +107,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.1)
+    netaddr (1.5.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nokogumbo (1.4.1)
@@ -120,7 +120,8 @@ GEM
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
-    rack-attack (4.3.0)
+    rack-ip_filter (0.1.0)
+      netaddr
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -206,7 +207,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   faker
-  heroku-request-id
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
@@ -214,7 +214,7 @@ DEPENDENCIES
   pg
   populator
   puma
-  rack-attack
+  rack-ip_filter
   rails (= 4.2.0)
   rails_12factor
   ransack!

@@ -39,13 +39,12 @@ gem 'sanitize'
 
 gem 'devise'
 
-gem 'rack-attack'
-
 gem 'rails_12factor', group: :production
 
 gem 'puma'
 
-gem 'heroku-request-id'
+gem 'rack-ip_filter'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
