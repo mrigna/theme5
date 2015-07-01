@@ -1,4 +1,4 @@
-Rack::Attack.blacklist('allow from fps') do |req|
+Rack::Attack.whitelist('allow from fps') do |req|
     # Requests are allowed if the return value is truthy
-  '127.0.0.1' == req.ip
+  '193.191.211.19' == req.ip
 end
