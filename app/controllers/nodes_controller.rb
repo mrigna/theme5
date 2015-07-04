@@ -21,11 +21,11 @@ class NodesController < ApplicationController
 
   def set_node
   @node = Node.find(params[:id])
-    unless current_user.dg == "all"
-    @scope = Node.user(@user).where.not(:group => nil)
-    else
-    @scope = Node.all.where.not(:group => nil)
-    end
+      unless current_user.dg == "all"
+        @group_select = Node.user(@user).where.not(group: nil).pluck(:group).uniq.sort
+      else
+        @group_select = Node.all.where.not(group: nil).pluck(:group).uniq.sort
+      end
   end
 
   def set_scope
