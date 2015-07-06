@@ -5,9 +5,9 @@ class SearchesController < ApplicationController
     @choice_dg = ["", "dg-gs", "dg4", "dg5", "medex", "shc", "com-po"]
     dg = current_user.dg
     if  current_user.dg == "all"
-      @groups =  Node.where.not(group: nil).pluck(:group)
+      @groups =  Node.where.not(group: nil).pluck(:group).uniq.sort
     else
-      @groups =  Node.where(dg: dg).where.not(group: nil).pluck(:group)
+      @groups =  Node.where(dg: dg).where.not(group: nil).pluck(:group).uniq.sort
     end
     @search = @q.result(distinct: true).order(id: :asc)
   end
