@@ -6,8 +6,8 @@ class ThemesController < ApplicationController
 
   def index
     @themes = Theme.node(params[:node_id]).order(id: :asc)
-    session[:last_page] = request.env['HTTP_REFERER']
-   end
+    session[:last_page] = request.env['HTTP_REFERER']    
+    end  
 
   def check
     if  params[:theme][:check_com] == "1"

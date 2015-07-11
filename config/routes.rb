@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  resources :nodes, :only => :none do
+  resources :nodes, :only => :destroy do
     collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
     member {get 'edit' => 'nodes#edit'}
     member {patch 'edit' => 'nodes#update'}
