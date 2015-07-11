@@ -31,15 +31,15 @@ class SearchesController < ApplicationController
     case @user
     when "all"
       if params[:action] == "simple"
-        @q = Node.all.ransack(params[:q])
+        @q = Node.all.where.not(dg: "deleted").ransack(params[:q])
       else
-        @q = Theme.joins(:node).ransack(params[:q])
+        @q = Theme.where.not(node_id: 0).joins(:node).ransack(params[:q])
       end
     else
       if params[:action] == "simple"
-        @q = Node.user(@user).ransack(params[:q])
+        @q = Node.user(@user).where.not(dg: "deleted").ransack(params[:q])
       else
-       @q = Theme.joins(:node).where('nodes.dg' => @user).ransack(params[:q])
+        @q = Theme.where.not(node_id: 0).joins(:node).where('nodes.dg' => @user).ransack(params[:q])
       end
     end
   end
