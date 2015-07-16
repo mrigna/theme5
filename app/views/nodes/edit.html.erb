@@ -1,6 +1,6 @@
 <i>Select a new group</i>
 
-<%= form_for @node, url: {action: "update"}, remote: true do |t| %>
+<%= form_for @node, url: {action: "update_group"}, remote: true do |t| %>
 <%= t.select :group, @group_select %>
 <%= t.submit "Update group", class: "button round tiny secondary", :onclick =>  "alert('Group updated!');" %>
 <% end %>

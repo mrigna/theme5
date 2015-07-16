@@ -1,0 +1,20 @@
+Node #:<%= Node.maximum(:nodeID) + 1 %>
+<%= form_for(@node, url: node_path, action: :patch) do |f| %>
+        <div class="field">
+          <div class="label"><%= f.label :url_label %></div><br>
+          <%= f.text_field :url_label %>
+        </div>
+          <div class="field">
+          <div class="label"><%= f.label :dg %></div><br>
+            
+            <%= f.select(:dg,  ["dg-gs", "dg4", "dg5", "medex", "shc", "com-po"], :id => 'dg_select', :prompt => "-- Choose DG --") %>
+        </div>
+        <div class="field">
+          <div class="label"><%= f.label :hidden %></div><br>
+          <%= f.check_box :hidden %>
+          </div>
+
+        <div class="actions">
+         <%= f.submit class: "button round tiny secondary" %><%= link_to "Back", :back, class: "button round tiny info" %>
+        </div>
+<% end %>
