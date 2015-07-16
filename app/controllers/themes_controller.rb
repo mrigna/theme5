@@ -5,9 +5,13 @@ class ThemesController < ApplicationController
   after_action :fetch_lang, only: :new_entry
 
   def index
+    if current_user.dg == Node.find(params[:node_id]).dg or current_user.dg == "all"
     @themes = Theme.node(params[:node_id]).order(id: :asc)
-    session[:last_page] = request.env['HTTP_REFERER']    
-    end  
+    session[:last_page] = request.env['HTTP_REFERER']
+    else
+      render 'not_allowed'
+    end
+  end  
 
   def check
     if  params[:theme][:check_com] == "1"
