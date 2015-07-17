@@ -5,10 +5,7 @@
 <% if current_user.dg == "all" %>
 <p align="right"><%= link_to "New Node", new_node_path(@last), class: "button alert" %></p>
 <% end %>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ad5584... new node functionality basic
 
 <table role="grid" width="100%">
   <thead>
@@ -27,6 +24,7 @@
 
     <tbody>
     <% @node_select.each do |node| %>
+      <% unless node.nodeID.nil? %>
           <tr>
             <td><%= node.nodeID %></td>
             <td><%= node.url_label %></td>
@@ -39,13 +37,23 @@
 			<% end %>
 			      <td><%= Theme.where(node_id: node.id).count %></td>
             <td><%= link_to 'selection', node_themes_path(node.id) %></td>
-<<<<<<< HEAD
             <td><%= link_to(image_tag("red.png"), delete_node_path(node), method: :delete, data: { confirm: 'Make sure this node is empty before proceding?'}) unless node.id == 0 %></td>  
-=======
-            <td><%= link_to(image_tag("red.png"), delete_node_path(node), method: :delete, data: { confirm: 'Make sure you this node is empty before proceding?'}) %></td>  
->>>>>>> 1ad5584... new node functionality basic
          </tr>
-         
+                <td><%= node.nodeID %></td>
+                <td><%= node.url_label %></td>
+                <td><%= node.hidden %></td>
+                <td><%= node.dg %></td>
+          <% unless node.group.nil? %>
+                <td><%= link_to node.group, edit_node_path(node) %></td>
+                <% else %>
+                <td><%= link_to "-", edit_node_path(node) %></td>
+          <% end %>
+                <td><%= Theme.where(node_id: node.id).count %></td>
+                <td><%= link_to 'selection', node_themes_path(node.id) %></td>
+                <td><%= link_to(image_tag("red.png"), delete_node_path(node), method: :delete, data: { confirm: 'Make sure you this node is empty before proceding?'}) %></td>  
+             </tr>
+      <% end %>  
+>>>>>>> ed03d7b... fixed node creation issues
     <% end %>
   </tbody>
 </table>

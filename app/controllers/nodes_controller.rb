@@ -1,19 +1,19 @@
 class NodesController < ApplicationController
   before_action :set_scope, only: [:home, :index, :edit]
-  before_action :set_node, only: [:edit, :update, :update_group, :destroy, :remove_group]
+  before_action :set_node, only: [:new, :edit, :update, :update_group, :destroy, :remove_group]
+  after_action :create, only: :update
     
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
-    @last = Node.maximum(:id)+1 
+    @last = Node.maximum(:id) 
   end
   
-  def new
-    @node ||= Node.new
-    @node.update(id: params[:id])
-   end
+  def create
+    @node = Node.create
+  end
   
-  def update 
+  def update
     @node.update(nodeID: Node.maximum(:nodeID) + 1)
     dg = params[:node][:dg]
     @node.update(dg: dg)
