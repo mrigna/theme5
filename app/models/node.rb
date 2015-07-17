@@ -9,7 +9,9 @@ class Node < ActiveRecord::Base
   end
 
   def url_label_and_dg
+    unless nodeID.nil?
     '   ' + nodeID.to_s + ' -- ' + dg + ' -- ' + url_label
+    end
   end
 
   scope :dg, -> (name_dg) { where(dg: name_dg) }

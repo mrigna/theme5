@@ -1,4 +1,5 @@
 <h1>New Node</h1>
+<p><font color='red'>Node #<%=Node.maximum(:nodeID) + 1 %> (<i><b>Keep in mind that existing node # will create conflicts!</b></i>)</font></p>
 <%= form_for(@node, url: node_path, action: :patch) do |f| %>
         <div class="field">
           <div class="label"><%= f.label :url_label %></div><br>
