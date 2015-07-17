@@ -1,4 +1,4 @@
-Node #:<%= Node.maximum(:nodeID) + 1 %>
+<h1>New Node</h1>
 <%= form_for(@node, url: node_path, action: :patch) do |f| %>
         <div class="field">
           <div class="label"><%= f.label :url_label %></div><br>
