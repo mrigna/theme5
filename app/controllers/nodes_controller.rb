@@ -40,8 +40,7 @@ class NodesController < ApplicationController
     @node.themes.update_all(node_id: 0)
     @node.destroy!
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Node was successfully destroyed.' }    
-      redirect_to dg_nodes_path(current_user.dg) and return
+      format.html { redirect_to dg_nodes_path(current_user.dg), notice: 'Node was successfully destroyed.' }
     end
     
   end
