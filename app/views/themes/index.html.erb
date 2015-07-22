@@ -1,7 +1,7 @@
 <b>Listing themes </b>
 <hr />
 <% if current_user.dg == "all" %>
-<p align="right"><%= link_to "Create new Theme",  redirect_theme_path(Theme.last.id), class: "button alert" %></p>
+<p align="right"><%= link_to "Create new Theme",  redirect_theme_path(Theme.maximum(:id)), class: "button alert" %></p>
 <% end %>
 
 

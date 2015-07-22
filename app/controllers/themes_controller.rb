@@ -30,9 +30,8 @@ class ThemesController < ApplicationController
   end
 
   def generate
-     @theme = Theme.create
-     @theme.contentID  = "new_"+ DateTime.now.to_s(:number)
-     @theme.save!
+    @theme = Theme.create
+    @theme.update(contentID:  "new_"+ DateTime.now.to_s(:number))
   end
 
   def create
