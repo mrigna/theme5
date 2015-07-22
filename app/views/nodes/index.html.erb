@@ -2,7 +2,9 @@
 <b><%= @title.upcase %></b>
 <% end %>
 <hr/>
-<%#= link_to "New Node", node_new_path %>
+<% if current_user.dg == "all" %>
+<p align="right"><%= link_to "New Node", new_node_path(@last), class: "button alert" %></p>
+<% end %>
 
 <table role="grid" width="100%">
   <thead>
@@ -33,7 +35,7 @@
 			<% end %>
 			      <td><%= Theme.where(node_id: node.id).count %></td>
             <td><%= link_to 'selection', node_themes_path(node.id) %></td>
-            <td><%= link_to(image_tag("red.png"), node_path(node), method: :delete, data: { confirm: 'Make sure this node is empty before proceding?'}) unless node.id == 0 %></td>  
+            <td><%= link_to(image_tag("red.png"), delete_node_path(node), method: :delete, data: { confirm: 'Make sure this node is empty before proceding?'}) unless node.id == 0 %></td>  
          </tr>
          
     <% end %>
