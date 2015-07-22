@@ -29,17 +29,16 @@
             <td><%= node.url_label %></td>
             <td><%= node.hidden %></td>
             <td><%= node.dg %></td>
-			<% unless node.group.nil? %>
+			      <% unless node.group.nil? %>
             <td><%= link_to node.group, edit_node_path(node) %></td>
             <% else %>
             <td><%= link_to "-", edit_node_path(node) %></td>
-			<% end %>
+			      <% end %>
 			      <td><%= Theme.where(node_id: node.id).count %></td>
             <td><%= link_to 'selection', node_themes_path(node.id) %></td>
             <td><%= link_to(image_tag("red.png"), delete_node_path(node), method: :delete, data: { confirm: 'Make sure you this node is empty before proceding?'}) unless node.id == 0 %></td>  
          </tr>
-         
-    <% end %>
+      <% end %>
   </tbody>
 </table>
 <br /> <br/ >

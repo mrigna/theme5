@@ -6,7 +6,7 @@ class NodesController < ApplicationController
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
-    @last = Node.maximum(:id) 
+    @last = Node.maximum(:id)
   end
   
   def create
