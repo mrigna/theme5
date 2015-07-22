@@ -1,13 +1,32 @@
 class NodesController < ApplicationController
   before_action :set_scope, only: [:home, :index, :edit]
-  before_action :set_node, only: [:create, :edit, :update, :destroy, :remove_group]
+  before_action :set_node, only: [:edit, :update, :update_group, :destroy, :remove_group]
     
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
+    @last = Node.maximum(:id)+1 
   end
-    
-  def update
+  
+  def new
+    @node ||= Node.new
+    @node.update(id: params[:id])
+   end
+  
+  def update 
+    @node.update(nodeID: Node.maximum(:nodeID) + 1)
+    dg = params[:node][:dg]
+    @node.update(dg: dg)
+    @node.update(url_label: params[:node][:url_label])
+      if params[:node][:hidden] == "1"
+        @node.update(hidden: true) 
+      else
+        @node.update(hidden: false)
+      end
+    redirect_to dg_nodes_path(@node.dg)
+  end
+      
+  def update_group
     @node.update(group: params[:node][:group]) unless params[:node][:group].blank?
     redirect_to dg_nodes_path(@node.dg)
   end

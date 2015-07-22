@@ -8,11 +8,14 @@ Rails.application.routes.draw do
 
   mount Mercury::Engine => '/'
 
-  resources :nodes, :only => :destroy do
+  resources :nodes, :only => :none do
     collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
+    member {get 'new' => 'nodes#new', as: 'new'}
+    member {patch 'new' => 'nodes#update'}
     member {get 'edit' => 'nodes#edit'}
-    member {patch 'edit' => 'nodes#update'}
+    member {patch 'edit' => 'nodes#update_group'}
     member {post 'edit' => 'nodes#remove_group'}
+    member {delete 'delete' => 'nodes#destroy', as: 'delete'}
 
     resources :themes, :only => :destroy, :shallow => :true do
       collection {get 'index' => 'themes#index'}
