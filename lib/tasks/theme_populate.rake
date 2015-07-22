@@ -3,27 +3,26 @@ namespace :db do
   task :theme_populate => :environment do
     require 'populator'
     require 'faker'
-      
-      
+
       @i = 1
       @count = 0
       30.times do
-        Theme.populate(4) do |theme|                
+        Theme.populate(4) do |theme|
            get_node
            theme.node_id = @i
            get_content
            theme.contentID = @content
-           @count += 1 
+           @count += 1
            generate_html
            theme.html_content = @random_html_content
            theme.is_original = @original
            theme.more_about = false
            puts theme.contentID
         end
-              #Theme.create  
-      
-        sleep(10)
-      end  
+
+
+        sleep(3)
+      end
      puts 'All Themes done'
     end
 end

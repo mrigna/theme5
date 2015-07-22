@@ -1,0 +1,4 @@
+<h3>User</h3>
+<p>Name: <%= @user.username if @user.username %></p>
+<p>DG:  <%= @user.dg if @user.dg %></p>
+<%= link_to "Update",  edit_user_path(@user), class: "button round tiny secondary" %>  <%= link_to "Back", users_path, class: "button round tiny info" %>

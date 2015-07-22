@@ -1,30 +1,46 @@
 Rails.application.routes.draw do
-  root 'nodes#index'
-  
-  get  'themes/:id/index' => 'themes#index', as: 'themes'
-  
-  resources :metadata, :only => [:update]
-  
-  resources :themes, :only => [:destroy, :show, :update] do
-    member {post :mercury_update}
+  root :to => "nodes#index"
+
+  devise_for :users, :controllers => { registrations: 'registrations' }, path_names: {sign_in: "login", sign_out: "logout"}
+  resources :users do
+    member {patch 'edit' => 'users#update'}
   end
-     
+
   mount Mercury::Engine => '/'
-  get  'themes/:id/new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'
-  get  'themes/:id/create' => 'themes#new_entry'
-  post 'themes/:id/create' => 'themes#create', as: 'mercury_create'  
-  get  'themes/:id/update' => 'themes#edit', as: 'update'
-  post 'themes/:id/update' => 'themes#mercury_update'
-     
-  get  'nodes/index' => 'nodes#index', as: 'nodes'
-  get  'searches/index' => 'searches#index', as: 'search'
-  
-  resources :nodes   do
-    collection { post :search, to: 'nodes#index' }
+
+  resources :nodes, :only => :destroy do
+    collection {get  ':dg/index' => 'nodes#index', as: 'dg'}
+    member {get 'edit' => 'nodes#edit'}
+    member {patch 'edit' => 'nodes#update'}
+    member {post 'edit' => 'nodes#remove_group'}
+
+    resources :themes, :only => :destroy, :shallow => :true do
+      collection {get 'index' => 'themes#index'}
+      end
   end
-  
-  
-  
+  resources :themes,  :only => :none do
+    member {post :mercury_update}
+    member {get  'new', to: redirect {|params| "/editor/themes/#{params[:id]}/create"}, as: 'redirect'}
+    member {get 'create' => 'themes#new_entry'}
+    member {post 'create' => 'themes#create', as: 'mercury_create'}
+    member {get 'update' => 'themes#edit', as: 'update'}
+    member {get 'show' => 'themes#show', as: 'show'}
+    member {post 'update' => 'themes#mercury_update'}
+    member {match 'check_com' => 'themes#check', via:  [:get, :post, :patch]}
+  member {match 'check_dg' => 'themes#check', via: [:get, :post, :patch]}
+  end
+
+    resources :searches,  :only => :none do
+      collection {match 'simple' =>  "searches#simple", via: [:get, :post]}
+      collection {match 'complex' => "searches#complex", via: [:get, :post]}
+      get 'show_original' => 'searches#show_original', as: 'original'
+    end
+
+    resources :metadata,  :only => :none do
+      member {get '/update' => 'metadata#edit'}
+      member {match '/update' => 'metadata#update', via: :patch}
+    end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

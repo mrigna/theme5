@@ -1,0 +1,22 @@
+<i>Select a new group</i>
+
+<%= form_for @node, url: {action: "update"}, remote: true do |t| %>
+<%= t.select :group, @group_select %>
+<%= t.submit "Update group", class: "button round tiny secondary", :onclick =>  "alert('Group updated!');" %>
+<% end %>
+
+
+<% if current_user.dg == "all" %>
+<i>Add a group to the existing list</i>
+<%= form_for @node, url: {action: "update"}, remote: true do |t| %>
+<%= t.text_field :group, value: 'Enter new value', :onchange => "$(this.form).submit();  alert('New value created!');" %>
+  <% end %>
+<% end %>
+
+<%= button_to "Remove group", {:action => 'remove_group'}, class: "button round tiny info"%>
+<%= link_to "Back", :back %>
+
+
+
+
+

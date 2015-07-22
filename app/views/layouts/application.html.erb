@@ -1,14 +1,80 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Theme5</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
 
-<%= yield %>
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-</body>
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "FPS | #{@title}" %></title>
+
+
+     <%= javascript_include_tag "vendor/custom.modernizr" %>
+     <%= stylesheet_link_tag    "application",  media: 'all', 'data-turbolinks-track' => false %> 
+   	 <%#= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+	 <%= csrf_meta_tags %>
+  </head>
+
+  <body>  
+ 
+	<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
+	      <section class="top-bar-section">
+	      <% if user_signed_in? %>
+	        <ul class="left"> <%= link_to image_tag("logo.png", size: "45x45"), "/nodes/#{current_user.dg}/index" %></ul>
+
+	         <ul class="right">
+	          <li class="divider"></li>
+	           <% unless current_user.dg.nil? %>
+	              <% if current_user.dg == "all" %>
+	                 <li> <%= link_to "Show all nodes", dg_nodes_path("all") %></li>
+	                 <% ["dg-gs", "dg4", "dg5", "medex", "shc", "com-po"].each do |t| %>
+	                 <li class="divider"></li>
+	                 <li><%= link_to "All #{t} nodes", dg_nodes_path(t) %></li>
+	                 <% end %>
+	              <% else %>
+	                <li class="divider"></li>
+	                <li><%= link_to "All #{current_user.dg} nodes", dg_nodes_path(current_user.dg) %></li>
+	              <% end %>
+	                 <li class="has-dropdown">
+	                  <a href="#">Search</a>
+	                  <ul class="dropdown">
+	                    <li><%= link_to "Simple Search", simple_searches_path %> </li>
+	                    <li><%= link_to "Advanced Search", complex_searches_path %> </li>
+	                  </ul>
+	                </li>
+	            <% else %>
+
+	            <% end %>
+	           <% end %>
+	         </ul>
+	      </section>
+	</nav>
+    <div align="right">
+    <% if user_signed_in? %>
+          Logged in as <strong><%= current_user.username %></strong>.
+         <%= link_to 'Edit profile', edit_user_registration_path %> |
+         <%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+    <% end %>
+    </div>
+<div class="row">
+<% if notice %>
+  <div class="large-4 columns alert-box success radius"><%= notice %></div>
+<% end %>
+<% if alert %>
+  <div class="large-4 columns alert-box alert radius"><%= alert %></div>
+<% end %>
+
+<div class="row">
+  <div class="small-12 columns"><%= yield %></div>
+</div>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>

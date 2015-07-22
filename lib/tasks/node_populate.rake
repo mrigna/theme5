@@ -29,7 +29,7 @@ end
 
 def get_dg
   if @i < 6  
-      @dg  = ["DG-GS", "DG4", "DG5", "MEDEX", "SHC", "COM/PO"][@i]
+      @dg  = ["dg-gs", "dg4", "dg5", "medex", "shc", "com-po"][@i]
       @i += 1
       else
       @i = 0

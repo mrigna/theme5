@@ -1,39 +1,39 @@
+<% unless @theme.html_content.nil? %> 
+<h1>New Theme (preview)</h1>
+<p><b>Title:</b> <%= @theme.metadata.title  %></p>
+<p><b>Description:</b>  <%= @theme.metadata.description %></p>
+<p><b>Keywords:</b> <%=  @theme.metadata.keywords %></p>
+<p><b>Language:</b> <%=  @theme.metadata.language %></p>
+<p><b>Node:</b> <%= @theme.node.nodeID unless @theme.node.nil? %> | <%= @theme.node.url_label unless @theme.node.nil? %>
+<p><%= link_to 'Show', show_theme_path(@theme) %> | <%= link_to 'Edit', "/editor"  + update_theme_path(@theme), id: "edit_link", data: {save_url: mercury_update_theme_path(@theme)}  %></p>
+
+<% else %>
 <h1>New Theme</h1>
-    <div>Titre</div><br>
-    <div id="metadata_title" data-mercury="simple">
-      <%= @theme.metadata.title  %>
+<ul class="accordion" data-accordion>
+   <li class="accordion-navigation">
+     <a href="#panel1a">Content</a>
+     <div id="panel1a" class="content active">
+	  <div id="theme_content" data-mercury="full">
+      <%= raw @theme.html_content %>
+      </div>
+  </li>
+  <li class="accordion-navigation">
+    <a href="#panel2a">Metadata</a> 
+    <div id="panel2a" class="content">
+        <%= render :template => 'metadata/edit' %>
     </div>
-    <div>Description</div><br>
-    <div id="metadata_description" data-mercury="simple">
-      <%= @theme.metadata.description %>
-    </div>
-    <div>Mots-clés</div><br>
-    <div id="metadata_keywords" data-mercury="simple">
-      <%= @theme.metadata.keywords %>
-    </div>
-    <div>Langue</div><br>
-    <% if @theme.metadata.language.nil? %>   
-    <%= select_tag "language",  options_for_select(["fr", "nl", "de", "en"]), :prompt => "-- Langage --", :id => "lang_select" %>
-    <% end %>
-    <%= @theme.metadata.language %>
+  </li>
+</ul>
 
-
-<div>Contenu</div><br>
-  <div id="theme_content" data-mercury="full">
-    <%= raw @theme.html_content %>
-  </div>
-
-<div>Node</div><br>
-  <% if @theme.node_id.nil? %>
-  <%= collection_select(:node, :id, Node.all, :id, :url_label, {:prompt => "-- Select a category --"}, {:id => 'node_select'}) %>
-  <% else %>
-  <%= @theme.node.url_label %>
-  <% end %>
+<% end %> 
 
 <script>
 jQuery(parent).trigger('initialize:frame');
 </script>
 
-<br>
-<hr /><br>
-<%= link_to 'Back', root_path %>
+<% unless @theme.node_id.nil? %>
+<%= link_to 'Back', node_themes_path(@theme.node_id) %>
+<% end %>
+
+
+

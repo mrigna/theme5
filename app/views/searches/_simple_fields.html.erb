@@ -1,0 +1,33 @@
+<%= search_form_for @q, url: simple_searches_path, method: :post do |f| %>
+  <div class="panel">
+    <form>
+        <div class="row">
+          <div class="small-2 columns"><%= f.label :url_label_cont, class: "right inline" %></div>
+          <div class="small-6 columns left"><%= f.search_field :url_label_cont %></div>
+        </div>
+        <div class="row">
+           <div class="small-2 columns"><%= f.label :nodeID_gteq, "nodes ID from", class: "right inline" %></div>
+           <div class="small-2 columns left"><%= f.text_field :nodeID_gteq %></div>
+        </div>
+        <div class="row">
+          <div class="small-2 columns"><%= f.label :nodeID_lteq, "to", class: "right inline" %></div>
+          <div class="small-2 columns left"><%= f.text_field :nodeID_lteq %></div>
+        </div>
+      <% if current_user.dg == "all" %>
+      <div class="row">
+          <div class="small-2 columns" ><%= f.label :dg_cont, class: "right inline" %></div>
+          <div class="small-2 columns left"><%= f.select :dg_cont, @choice_dg %></div>
+       </div>
+     <% end %>
+      <div class="row">
+          <div class="small-2 columns" ><%= f.label :group, class: "right inline" %></div>
+        <div class="small-2 columns left"><%= f.select :group_cont, @groups, :include_blank => true %></div>
+       </div>
+
+      <div class="row">
+        <div class="small-4 columns right"><%= f.submit "Search", class: "button radius"%>
+        <%= link_to "Clear Search", simple_searches_path, class:"button secondary" %></div>
+      </div>
+    </form>
+  </div>
+<% end %>

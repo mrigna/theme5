@@ -1,29 +1,43 @@
-<h1>Listing Nodes </h1>
-<!-- Select node range -->
+<% if @title.present? %>
+<b><%= @title.upcase %></b>
+<% end %>
+<hr/>
+<%#= link_to "New Node", node_new_path %>
 
-<table>
+<table role="grid" width="100%">
   <thead>
     <tr>
       <th>Node ID</th>
-      <th>Url Label</th>
+      <th>Url Tag</th>
       <th>Hidden</th>
       <th>DG</th>
-      <th>Count Themes</th>
-      <th colspan="3"></th>
+      <th>Update group</th>
+      <th>Number objects</th>
+      <th>Link to objects</th>
+      <th>Delete</th>
+      
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    
-    <% @nodes.each do |node| %>                      
+    <tbody>
+    <% @node_select.each do |node| %>
           <tr>
             <td><%= node.nodeID %></td>
             <td><%= node.url_label %></td>
             <td><%= node.hidden %></td>
             <td><%= node.dg %></td>
-            <td><%= Theme.where(node_id: node.id).count %></td>
-            <td><%= link_to 'selection', themes_path(node.id) %></td>
-          </tr>
+			<% unless node.group.nil? %>
+            <td><%= link_to node.group, edit_node_path(node) %></td>
+            <% else %>
+            <td><%= link_to "-", edit_node_path(node) %></td>
+			<% end %>
+			      <td><%= Theme.where(node_id: node.id).count %></td>
+            <td><%= link_to 'selection', node_themes_path(node.id) %></td>
+            <td><%= link_to(image_tag("red.png"), node_path(node), method: :delete, data: { confirm: 'Make sure this node is empty before proceding?'}) unless node.id == 0 %></td>  
+         </tr>
+         
     <% end %>
   </tbody>
 </table>
+<br /> <br/ >
+<%= paginate @node_select, :params => {:controller => 'nodes', :action => 'index'} %>

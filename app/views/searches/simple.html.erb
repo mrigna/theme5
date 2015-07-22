@@ -1,0 +1,30 @@
+<b>Simple Search</b>
+<%= render "simple_fields" %>
+
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Node ID</th>
+      <th>Url Tag</th>
+      <th>Hidden</th>
+      <th>DG</th>
+      <th>Number objects</th>
+      <th>Link to objects</th>
+
+     </tr>
+    </thead>
+
+    <tbody>
+      <% @search.each do |node| %>
+          <tr>
+            <td><%= node.nodeID %></td>
+            <td><%= node.url_label %></td>
+            <td><%= node.hidden %></td>
+            <td><%= node.dg %></td>
+            <td><%= Theme.where(node_id: node.id).count %></td>
+            <td><%= link_to 'selection', node_themes_path(node.id) %></td>
+          </tr>
+      <% end %>
+  </tbody>
+</table>
+

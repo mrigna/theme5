@@ -1,34 +1,66 @@
-<h1>Listing themes </h1>
-<p id="notice"><%= notice %></p>
-<table>
+<b>Listing themes </b>
+<hr />
+<% if current_user.dg == "all" %>
+<p align="right"><%= link_to "Create new Theme",  redirect_theme_path(Theme.last.id), class: "button alert" %></p>
+<% end %>
+
+<p id="notice"><font color='red'><%= notice %></font></p>
+<table role="grid" width="100%">
   <thead>
     <tr>
       <th>ID</th>
       <th>Titre</th>
       <th>Language</th>
+      <th>More about</th>
       <th>DG</th>
       <th colspan="3"></th>
-    </tr>
+      <th>Word count</th>
+      <% if current_user.dg == "all" %><th>Check Com</th><% end %>
+      <th>Check DG</th>
+     </tr>
   </thead>
 
   <tbody>
-    <% @themes.each do |theme| %>
-   
-    <% if theme.id.nil? == false and theme.html_content.nil? == false %>                        
-          <tr>
-            <td><%= theme.contentID %></td>
-            <td><%= theme.metadata.title %></td>
-            <td><%= theme.metadata.language %></td>
-            <td><%= theme.node.dg %></td>
-            <td><%= link_to 'Show', theme_path(theme) %></td>
-            <td><%= link_to 'Edit', "/editor"  + update_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
-          <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-        </tr>
-    <% end %>
-    <% end %>
+
+     <% @themes.each do |theme| %>
+        <% if theme.id.nil? == false and theme.html_content.nil? == false %>
+            <tr>
+                <td><%= theme.contentID %></td>
+                <td><%= theme.metadata.title %></td>
+                <td><%= theme.metadata.language %></td>
+                <td><%= "Yes" if theme.more_about == true %> 
+                <td><%= theme.node.dg %></td>
+                <td><%= link_to 'Show', show_theme_path(theme) %></td>
+                <td><%= link_to 'Edit', "/editor"  + update_theme_path(theme), id: "edit_link", data: {save_url: mercury_update_theme_path(theme)}  %></td>
+                <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= WordsCounted.count(ActionView::Base.full_sanitizer.sanitize(theme.html_content)).word_count %></td>
+                <%= render partial: 'checks', :object => theme, as: :theme %>
+            </tr>
+
+
+        <% end %>
+     <% end %>
+
   </tbody>
 </table>
 
-<br>
 
-<%= link_to "New Theme",  redirect_path(@id) %> | <%= link_to "Back to Node list", nodes_path %>
+<i> Choose language tab to view theme in a specific language </i>
+<ul class="tabs" data-tab >
+      <%= render 'tabs' %>
+  </ul>
+  <div class="tabs-content">
+       <%= render 'html_content' %>
+  </div>
+
+  <% unless session[:last_page].nil? %>
+    <% unless session[:last_page].include? "update" %>
+    <%= link_to "Back", session[:last_page], class: "button round tiny info"  %>
+    <% else %>
+    <%= link_to "Go Back", dg_nodes_path(Node.find(@themes.first.node_id).dg), method: :get, class: "button round tiny info"  %>
+    <% end %>
+  <% end %>
+
+
+
+
