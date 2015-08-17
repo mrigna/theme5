@@ -42,6 +42,8 @@ gem 'rack-attack'
 
 gem 'rails_12factor', group: :production
 
+gem 'hstore_accessor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

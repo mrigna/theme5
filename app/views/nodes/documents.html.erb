@@ -1,0 +1,143 @@
+<h1>Listing documents </h1>
+
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Law (<%= @law.size %>)</th>
+      <th><%= "Keep (if checked)" unless @law.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+   
+   <% @law.each do |d| %>
+ <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   
+   <% unless @law.nil? %>     
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+   <% end %>
+ </tr>
+   
+   <% end %>
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Form (<%= @form.size %>)</th>
+      <th><%= "Keep (if checked)" unless @form.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+  
+  <% @form.each do |d| %>
+ <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <% unless @form.nil? %>
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+   <% end %>
+ </tr>
+    
+   <% end %>
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>FAQ (<%= @faq.size %>)</th>
+      <th><%= "Keep (if checked)" unless @faq.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+   
+   <% @faq.each do |d| %>
+ <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+    <% unless @faq.nil? %>
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+    <% end %>
+ </tr>
+    
+   <% end %>
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Divers (<%= @divers.size %>)</th>
+      <th><%= "Keep (if checked)" unless @divers.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+    
+   <% @divers.each do |d| %>
+  
+   <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+    <% unless @divers.nil? %>
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+    <% end %>
+ </tr>
+    
+   <% end %>
+</table>
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Contact (<%= @contact.size %>)</th>
+      <th><%= "Keep (if checked)" unless @contact.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+   
+   <% @contact.each do |d| %>
+ <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+    <% unless @contact.nil? %> 
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+    <% end %>
+ </tr>
+   
+   <% end %>
+</table>
+</table>
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Link (<%= @link.size %>)</th>
+      <th><%= "Keep (if checked)" unless @link.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+   
+   <% @link.each do |d| %>
+ <tr>
+   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <% unless @link.nil? %>
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+   <% end %>
+ </tr>
+    
+   <% end %>
+</table>
+
+<%= link_to 'Go back', :back, class: "button round tiny info" %>
+
+

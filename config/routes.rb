@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     member {patch 'edit' => 'nodes#update_group'}
     member {post 'edit' => 'nodes#remove_group'}
     member {delete 'delete' => 'nodes#destroy', as: 'delete'}
+    member {get 'documents' => 'nodes#documents'}
 
     resources :themes, :only => :destroy, :shallow => :true do
       collection {get 'index' => 'themes#index'}
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
     member {get 'show' => 'themes#show', as: 'show'}
     member {post 'update' => 'themes#mercury_update'}
     member {match 'check_com' => 'themes#check', via:  [:get, :post, :patch]}
-  member {match 'check_dg' => 'themes#check', via: [:get, :post, :patch]}
+    member {match 'check_dg' => 'themes#check', via: [:get, :post, :patch]}
   end
 
     resources :searches,  :only => :none do
@@ -44,6 +45,9 @@ Rails.application.routes.draw do
       member {match '/update' => 'metadata#update', via: :patch}
     end
 
+    resources :documents,  :only => :none do
+      member {match 'check_doc' => 'documents#check', via:  [:get, :post, :patch]}
+    end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
