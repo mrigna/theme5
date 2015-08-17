@@ -47,6 +47,8 @@ group :production do
     gem 'rack-ip_filter'
 end
 
+gem 'hstore_accessor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

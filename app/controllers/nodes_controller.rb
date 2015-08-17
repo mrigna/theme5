@@ -1,12 +1,21 @@
 class NodesController < ApplicationController
   before_action :set_scope, only: [:home, :index, :edit]
-  before_action :set_node, only: [:new, :edit, :update, :update_group, :destroy, :remove_group]
+  before_action :set_node, only: [:new, :edit, :update, :update_group, :destroy, :remove_group, :documents]
   after_action :create, only: :update
-    
+      
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
-    @last = Node.maximum(:id)
+    @last = Node.maximum(:id)    
+  end
+  
+  def documents
+    @law = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Law'"
+    @form = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Form'"
+    @faq = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2FAQ'"
+    @divers = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Divers'"
+    @contact = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Contact'"
+    @link = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Link'"
   end
   
   def create

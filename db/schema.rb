@@ -11,11 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626141619) do
+ActiveRecord::Schema.define(version: 20150813130608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "node_id"
+    t.string   "doc_id"
+    t.string   "language"
+    t.hstore   "doc_attributes"
+    t.boolean  "checked"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "documents", ["node_id"], name: "index_documents_on_node_id", using: :btree
 
   create_table "metadata", force: :cascade do |t|
     t.integer  "theme_id"
@@ -32,13 +44,12 @@ ActiveRecord::Schema.define(version: 20150626141619) do
   create_table "nodes", force: :cascade do |t|
     t.integer  "nodeID"
     t.text     "url_label"
+    t.hstore   "label_translations"
     t.boolean  "hidden"
     t.string   "dg"
-    t.hstore   "label_translations"
-    t.hstore   "references"
+    t.string   "group"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "group"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -47,10 +58,10 @@ ActiveRecord::Schema.define(version: 20150626141619) do
     t.text     "html_content"
     t.boolean  "more_about"
     t.boolean  "is_original"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.boolean  "check_dg"
     t.boolean  "check_com"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "themes", ["node_id"], name: "index_themes_on_node_id", using: :btree
