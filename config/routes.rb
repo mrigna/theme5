@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/taxonomy', as: 'rails_admin'
   root :to => "nodes#index"
 
   devise_for :users, :controllers => { registrations: 'registrations' }, path_names: {sign_in: "login", sign_out: "logout"}
