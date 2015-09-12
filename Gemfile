@@ -44,6 +44,11 @@ gem 'rails_12factor', group: :production
 
 gem 'hstore_accessor'
 
+gem 'ancestry'
+gem 'rails_admin'
+gem 'rails_admin_nestable', '~> 0.3.2'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

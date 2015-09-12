@@ -18,11 +18,20 @@
         <div class="label"><%= f.label :language %></div><br>
         <div class="field"><%= f.select(:language,  ["fr", "nl", "de", "en"], :id => 'lang_select', :prompt => "-- Choose Langage --") %></div>
 
-        <div class="label"><%= f.label :node %></div><br>
-        <% unless @theme.node_id.nil?%>
-        <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
+        <div class="label"><%= f.label :term1_id %></div><br>
+        <div><%= f.select :term1_id, @terms, include_blank: true %></div>
+
+        <div class="label"><%= f.label :term2_id %></div><br>
+        <div><%= f.select :term2_id, @terms, include_blank: true %></div>           
+
+
+<% if current_user.dg == "all" %>
+          <div class="label"><%= f.label :node %></div><br>
+          <% unless @theme.node_id.nil?%>
+          <div>Current node: <%= Node.find(@theme.node_id).nodeID %> (<%= @theme.node_id %>)</div>
+          <% end %>
+          <td><%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, :id => 'node_select' )%></td>
         <% end %>
-        <td><%= collection_select(:node, :id, Node.all, :id, :url_label_and_dg,  {:prompt => "-- Select a Node --"}, :id => 'node_select' )%></td>
 
         <div class="actions">
          <%= f.submit class: "button round tiny secondary" %><%= link_to "Back", :back, class: "button round tiny info" %>

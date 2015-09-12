@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813130608) do
+ActiveRecord::Schema.define(version: 20150912143549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20150813130608) do
     t.string   "keywords"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "term1_id"
+    t.integer  "term2_id"
+    t.integer  "term3_id"
   end
 
   add_index "metadata", ["theme_id"], name: "index_metadata_on_theme_id", using: :btree
@@ -51,6 +54,23 @@ ActiveRecord::Schema.define(version: 20150813130608) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "terms", force: :cascade do |t|
+    t.string   "tid"
+    t.string   "language"
+    t.string   "title"
+    t.integer  "position"
+    t.string   "ancestry"
+    t.string   "url"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "dg1"
+    t.string   "dg2"
+    t.integer  "ancestry_depth", default: 0
+  end
+
+  add_index "terms", ["ancestry"], name: "index_terms_on_ancestry", using: :btree
+  add_index "terms", ["position"], name: "index_terms_on_position", using: :btree
 
   create_table "themes", force: :cascade do |t|
     t.integer  "node_id"
