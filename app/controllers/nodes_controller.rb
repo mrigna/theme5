@@ -1,14 +1,38 @@
 class NodesController < ApplicationController
   before_action :set_scope, only: [:home, :index, :edit]
-  before_action :set_node, only: [:new, :edit, :update, :update_group, :destroy, :remove_group, :documents]
+  before_action :set_node, only: [:new, :edit, :update, :update_group, :destroy, :remove_group, :documents, :contacts, :update_contacts]
+  before_action :check_language_contacts, only: [:contacts, :update_contacts]
   after_action :create, only: :update
       
   def index
     @node_select =  @q.result(distinct: true).page(params[:page]).per(20).order(nodeID: :asc)
     @title = @dg
-    @last = Node.maximum(:id)    
+    @last = Node.maximum(:id)
   end
   
+  def check_language_contacts
+    @fr = @contacts.where(xlanguage: "fr")
+    @nl = @contacts.where(xlanguage: "nl")
+    @de = @contacts.where(xlanguage: "de")
+    @en = @contacts.where(xlanguage: "en")
+    @lang = [@fr, @nl, @de, @en]
+  end
+  def contact
+  end
+    
+  def update_contacts    
+    lang = ["fr", "nl", "de", "en"]
+   
+    for i in 0..3   
+    l = @lang[i]
+      unless l.empty?
+      puts l.first.update(body: params[:content][:"#{'contact_content_' + lang[i]}"][:value])
+      end
+    i += 1
+    end
+    render text:""
+  end
+    
   def documents
     @law = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Law'"
     @form = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Form'"
@@ -63,6 +87,7 @@ class NodesController < ApplicationController
       else
         @group_select = Node.all.where.not(group: nil).pluck(:group).uniq.sort
       end
+    @contacts  = Contact.where(node_id: @node.nodeID).order(dindate: :desc)
   end
 
   def set_scope

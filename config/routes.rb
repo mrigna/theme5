@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     member {post 'edit' => 'nodes#remove_group'}
     member {delete 'delete' => 'nodes#destroy', as: 'delete'}
     member {get 'documents' => 'nodes#documents'}
+    member {get 'contacts' => 'nodes#contacts'}
+    member {post 'contacts' => 'nodes#update_contacts'}
 
     resources :themes, :only => :destroy, :shallow => :true do
       collection {get 'index' => 'themes#index'}
