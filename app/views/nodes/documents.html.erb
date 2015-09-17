@@ -13,7 +13,7 @@
    
    <% @law.each do |d| %>
  <tr>
-   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <td><%= d.ddocname %>:<blockquote><%= d.ddoctitle %></blockquote><br /></td>
    
    <% unless @law.nil? %>     
      <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
@@ -36,7 +36,7 @@
   
   <% @form.each do |d| %>
  <tr>
-   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <td><%= d.ddocname %>:<blockquote><%= d.ddoctitle %></blockquote><br /></td>
    <% unless @form.nil? %>
      <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
      <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
@@ -58,7 +58,7 @@
    
    <% @faq.each do |d| %>
  <tr>
-   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <td><%= d.ddocname %>:<blockquote><%= d.ddoctitle %></blockquote><br /></td>
     <% unless @faq.nil? %>
      <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
      <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
@@ -81,7 +81,7 @@
    <% @divers.each do |d| %>
   
    <tr>
-   <td><%= d.doc_id %>:<blockquote><%= d.title %></blockquote><br /></td>
+   <td><%= d.ddocname %>:<blockquote><%= d.ddoctitle %></blockquote><br /></td>
     <% unless @divers.nil? %>
      <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
      <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
