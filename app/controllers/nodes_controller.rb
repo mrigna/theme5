@@ -10,12 +10,12 @@ class NodesController < ApplicationController
   end
   
   def documents
-    @law = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Law'"
-    @form = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Form'"
-    @faq = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2FAQ'"
-    @divers = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Divers'"
-    @contact = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Contact'"
-    @link = Document.find_by_sql "SELECT * FROM documents WHERE  node_id = #{@node.nodeID} and doc_attributes->'type' = 'IE2Link'"
+    @law = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2Law'"
+    @form = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2Form'"
+    @faq = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2FAQ'"
+    @divers = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2Divers'"
+    @contact = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2Contact'"
+    @link = Document.find_by_sql "SELECT * FROM documents WHERE  xwebsitesection = #{@node.nodeID} and ddoctype = 'IE2Link'"
   end
   
   def create
