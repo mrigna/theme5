@@ -1,0 +1,17 @@
+<% @lang.each do |l| %>
+<% unless l.count == 0 %>
+    <b><%= l.first.xlanguage%></b> (Reference: <%= l.first.ddocname %>)
+        <div id= "contact_content_<%= l.first.xlanguage %>" data-mercury="full">
+           <%= raw l.first.body %>
+        </div>
+    <hr />
+    <% if l.count > 1 %>    
+    <div class="small-text"><b>[recovered old] <%= l.second.xlanguage%></b> (Reference: <%= l.second.ddocname %>)</div>   
+    <div id= "contact_content_<%= l.second.xlanguage %>" class="small-text">
+      <blockquote><font size="2px"><i><%= l.second.body %></i></font><blockquote></div>
+    <hr />
+    <% end %> 
+ <% end %>
+ <% end %>
+
+<%= link_to 'Go back', dg_nodes_path(current_user.dg), class: "button round tiny info" %>
