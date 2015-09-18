@@ -93,6 +93,31 @@
 </table>
 </table>
 
+<table role="grid" width="100%">
+  <thead>
+    <tr>
+      <th>Links (<%= @link.size %>)</th>
+      <th><%= "Keep (if checked)" unless @link.size == 0 %></th>
+    </tr>
+  </thead>
+ 
+ <tbody>
+    
+   <% @link.each do |d| %>
+  
+   <tr>
+   <td><%= d.ddocname %>:<blockquote><%= d.xie2_link %></blockquote><br /></td>
+    <% unless @link.nil? %>
+     <%= form_for(d, url: check_doc_document_path(d.id), remote: true) do |t| %> 
+     <td><%= t.check_box :check_doc, :checked =>d.checked, :onchange => "$(this.form).submit()" %></td>
+     <% end %>
+    <% end %>
+ </tr>
+    
+   <% end %>
+</table>
+</table>
+
 
 
 <%= link_to 'Go back', :back, class: "button round tiny info" %>
