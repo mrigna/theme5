@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
   config.model Term do
   nestable_tree({
     position_field: :position,
-    max_depth: 4
+    max_depth: 5
   })
     label_plural "Vocabulary"
   end
