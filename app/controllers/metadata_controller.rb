@@ -19,8 +19,10 @@ class MetadataController < ThemesController
     @meta.keywords = params[:metadata][:keywords]
     @meta.language = params[:metadata][:language]
     @meta.term1_id = params[:metadata][:term1_id]
-    @meta.term2_id = params[:metadata][:term1_id]
-    @theme.update(node_id: params[:node][:id]) unless params[:node][:id].blank?
+    @meta.term2_id = params[:metadata][:term2_id]
+    if current_user.dg == "all"
+      @theme.update(node_id: params[:node][:id]) unless params[:node][:id].blank?
+    end
     @meta.update(meta_params)
     render :js => "alert('Metadata updated!')"
   end
