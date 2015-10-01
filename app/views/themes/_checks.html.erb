@@ -4,5 +4,5 @@
   <% end %>
 <% end %>
 <%= form_for(theme, url: check_dg_theme_path(theme), remote: true) do |t| %>
-<td><%= t.check_box :check_dg, :checked => theme.check_dg, :onchange => "$(this.form).submit()" %></td>
+<!-- <td><%= t.check_box :check_dg, :checked => theme.check_dg, :onchange => "$(this.form).submit()" %></td> -->
 <% end %>
