@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109131804) do
+ActiveRecord::Schema.define(version: 20151109161547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,15 @@ ActiveRecord::Schema.define(version: 20151109131804) do
   end
 
   create_table "menus", force: :cascade do |t|
+    t.integer  "cid"
     t.string   "title"
     t.integer  "position"
     t.string   "ancestry"
     t.integer  "ancestry_depth"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at"
+    t.integer  "menu_id"
     t.integer  "node_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "metadata", force: :cascade do |t|
@@ -98,7 +100,6 @@ ActiveRecord::Schema.define(version: 20151109131804) do
     t.string   "dg2"
     t.integer  "ancestry_depth",  default: 0
     t.string   "vocabulary_term"
-    t.integer  "menu_id"
   end
 
   add_index "terms", ["ancestry"], name: "index_terms_on_ancestry", using: :btree
