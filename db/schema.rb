@@ -11,23 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912143549) do
+ActiveRecord::Schema.define(version: 20151109131804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "documents", force: :cascade do |t|
-    t.integer  "node_id"
-    t.string   "doc_id"
-    t.string   "language"
-    t.hstore   "doc_attributes"
-    t.boolean  "checked"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "contacts", force: :cascade do |t|
+    t.string   "ddocname",       limit: 30,  null: false
+    t.string   "ddoctitle",      limit: 255, null: false
+    t.string   "ddoctype"
+    t.string   "ddocaccount",    limit: 30
+    t.string   "dsecuritygroup", limit: 30,  null: false
+    t.string   "xlanguage",      limit: 30
+    t.string   "node_id",        limit: 200
+    t.text     "body"
+    t.datetime "dindate"
   end
 
-  add_index "documents", ["node_id"], name: "index_documents_on_node_id", using: :btree
+  add_index "contacts", ["node_id"], name: "contacts_Index01", using: :btree
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "xwebsitesection",               null: false
+    t.string   "ddocname",         limit: 30,   null: false
+    t.string   "ddoctitle",        limit: 255,  null: false
+    t.string   "ddoctype"
+    t.string   "ddocaccount",      limit: 30
+    t.string   "dsecuritygroup",   limit: 30,   null: false
+    t.string   "xlanguage",        limit: 30
+    t.string   "xie2_description", limit: 2000
+    t.string   "xie2_keywords",    limit: 2000
+    t.string   "xie2_link",        limit: 2000
+    t.string   "xie2_css_theme",   limit: 200
+    t.string   "dwebextension"
+    t.boolean  "checked"
+    t.datetime "dindate"
+    t.datetime "updated_at"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "position"
+    t.string   "ancestry"
+    t.integer  "ancestry_depth"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at"
+    t.integer  "node_id"
+  end
 
   create_table "metadata", force: :cascade do |t|
     t.integer  "theme_id"
@@ -62,11 +92,13 @@ ActiveRecord::Schema.define(version: 20150912143549) do
     t.integer  "position"
     t.string   "ancestry"
     t.string   "url"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "dg1"
     t.string   "dg2"
-    t.integer  "ancestry_depth", default: 0
+    t.integer  "ancestry_depth",  default: 0
+    t.string   "vocabulary_term"
+    t.integer  "menu_id"
   end
 
   add_index "terms", ["ancestry"], name: "index_terms_on_ancestry", using: :btree

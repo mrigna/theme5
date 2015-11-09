@@ -10,6 +10,7 @@ class NodesController < ApplicationController
     @last = Node.maximum(:id)
   end
   
+      
   def check_language_contacts
     @fr = @contacts.where(xlanguage: "fr")
     @nl = @contacts.where(xlanguage: "nl")
@@ -59,16 +60,7 @@ class NodesController < ApplicationController
     redirect_to dg_nodes_path(@node.dg)
   end
       
-  def update_group
-    @node.update(group: params[:node][:group]) unless params[:node][:group].blank?
-    redirect_to dg_nodes_path(@node.dg)
-  end
-
-  def remove_group
-    @node.update(group: nil)
-    redirect_to dg_nodes_path(@node.dg)
-  end
-  
+    
   def destroy
     @node.themes.update_all(node_id: 0)
     @node.destroy!
@@ -91,7 +83,7 @@ class NodesController < ApplicationController
   end
 
   def set_scope
-    @user = current_user.dg
+     @user = current_user.dg
      if @user == "all"
         @dg = params[:dg]
         unless @dg == "all"

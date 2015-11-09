@@ -14,8 +14,6 @@ Rails.application.routes.draw do
     member {get 'new' => 'nodes#new', as: 'new'}
     member {patch 'new' => 'nodes#update'}
     member {get 'edit' => 'nodes#edit'}
-    member {patch 'edit' => 'nodes#update_group'}
-    member {post 'edit' => 'nodes#remove_group'}
     member {delete 'delete' => 'nodes#destroy', as: 'delete'}
     member {get 'documents' => 'nodes#documents'}
     member {get 'contacts' => 'nodes#contacts'}

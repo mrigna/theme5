@@ -14,10 +14,10 @@
       <th>Url Tag</th>
       <th>Hidden</th>
       <th>DG</th>
-      <th>Update group</th>
-      <th>Link to themes</th>
-      <th>Link to documents</th>
-      <th>Link to contacts</th>
+      <th>Menu Link</th>
+      <th>Associated themes</th>
+      <th>Associated documents</th>
+      <th>Associated contacts</th>
       <th>Delete</th>
       
     </tr>
@@ -30,11 +30,11 @@
             <td><%= node.url_label %></td>
             <td><%= node.hidden %></td>
             <td><%= node.dg %></td>
-			      <% unless node.group.nil? %>
-            <td><%= link_to node.group, edit_node_path(node) %></td>
+            <% unless Menu.find_by(node_id: node.id).blank? %>
+            <td><%= Menu.find_by(node_id: node.id).title %></td>
             <% else %>
-            <td><%= link_to "-", edit_node_path(node) %></td>
-			      <% end %>
+            <td>-</td>
+            <% end %>        
             <td><%= link_to 'selection themes', node_themes_path(node.id) %> (<%= Theme.where(node_id: node.id).count %>)</td>
             <td><%= link_to  'selection documents', documents_node_path(node) %> (<%= Document.where(xwebsitesection: node.nodeID).count %>)</td>
             <% unless Contact.where(node_id: node.nodeID).blank? %>
