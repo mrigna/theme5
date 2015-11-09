@@ -15,7 +15,7 @@ RailsAdmin.config do |config|
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-  config.included_models = ["Term"]
+  config.included_models = ["Term", "Menu"]
   config.main_app_name = ['Taxonomy', 'Taxonomy Manager']
   
   config.actions do
@@ -45,5 +45,12 @@ RailsAdmin.config do |config|
     label_plural "Vocabulary"
   end
   
+  config.model Menu do
+  nestable_tree({
+    position_field: :position,
+    max_depth: 5
+  })
+    label_plural "Menu"
+  end
  
 end

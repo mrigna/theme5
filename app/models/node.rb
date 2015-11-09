@@ -1,4 +1,5 @@
 class Node < ActiveRecord::Base
+  has_one :menu
   has_many :themes
   has_many :documents
 
